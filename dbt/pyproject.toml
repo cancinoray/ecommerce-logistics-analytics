@@ -1,0 +1,9 @@
+[project]
+name = "dbt-olist-logistics"
+version = "0.1.0"
+description = "dbt project for the Olist e-commerce logistics analytics warehouse"
+requires-python = ">=3.12"
+dependencies = [
+    "dbt-clickhouse>=1.10.2",
+    "dbt-core>=1.11.15",
+]
