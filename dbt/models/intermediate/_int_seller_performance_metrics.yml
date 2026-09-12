@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_seller_performance_metrics
+    description: "One row per seller_id. All-time delivery on-time rate, average review score, and order volume per seller."
+    columns:
+      - name: seller_id
+        description: "Primary key. One row per seller."
+        tests:
+          - unique
+          - not_null
+      - name: order_volume
+        description: "Count of distinct orders the seller had at least one item in."
+      - name: on_time_rate
+        description: "Share of seller's orders with severity 'On Time', excluding 'Delivery data unavailable' from numerator and denominator."
+      - name: avg_review_score
+        description: "Average of non-null review_score across the seller's orders."
