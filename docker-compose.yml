@@ -25,6 +25,15 @@ services:
     build:
       context: ./dbt
     command: ["tail", "-f", "/dev/null"]
+    environment:
+      CLICKHOUSE_HOST: ${CLICKHOUSE_HOST:-clickhouse}
+      CLICKHOUSE_PORT: ${CLICKHOUSE_PORT:-8123}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:-analytics}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-analytics}
+      CLICKHOUSE_SCHEMA: ${CLICKHOUSE_SCHEMA:-marts}
+      DBT_PROFILES_DIR: /dbt
+    depends_on:
+      - clickhouse
 
 volumes:
   clickhouse-data:
