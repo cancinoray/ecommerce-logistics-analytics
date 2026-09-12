@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_location
+    description: "Geography reference dimension at one row per zip_code_prefix, straight passthrough of stg_geolocation (#14). Full-refresh."
+    columns:
+      - name: zip_code_prefix
+        description: "Primary key. Zip prefix kept as string; leading zeros significant."
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "Resolved city carried as-is from stg_geolocation."
+      - name: state
+        description: "Resolved state carried as-is from stg_geolocation."
+      - name: lat
+        description: "Mean latitude per prefix, carried as-is from stg_geolocation."
+      - name: lng
+        description: "Mean longitude per prefix, carried as-is from stg_geolocation."
