@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: mart_logistics_performance_score
+    description: "Composite 0-100 Logistics Performance Score, one row per order_month. Delivery 40%, Customer Experience 30%, Logistics Cost 20%, Seller Performance 10%, re-weighted over computable components only. Full-refresh."
+    columns:
+      - name: order_month
+        description: "Primary key. Calendar month (month start) derived from order_purchase_timestamp."
+        tests:
+          - unique
+          - not_null
+      - name: final_score
+        description: "Composite score, weighted average over computable components, re-normalized to sum 100%."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
