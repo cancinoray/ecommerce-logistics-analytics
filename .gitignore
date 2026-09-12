@@ -21,3 +21,6 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# Source data (Kaggle Olist CSVs, downloaded manually - see scripts/load_raw.sh)
+data/
