@@ -20,6 +20,9 @@ services:
       - metabase-plugins:/plugins
     environment:
       MB_DB_FILE: /metabase-data/metabase.db
+      # Weak complexity so the shared analytics/analytics dev login (matching
+      # the ClickHouse credentials above) is accepted. Dev-only, insecure by design.
+      MB_PASSWORD_COMPLEXITY: weak
 
   dbt:
     build:
