@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_order_payments
+    description: "One row per (order_id, payment_sequential) — clean, typed pass-through of the raw order_payments source. No filtering or deduplication; an order can have multiple payment rows (split payments/installments) by design."
+    columns:
+      - name: order_id
+        description: "FK to orders. Part of the natural composite key (order_id, payment_sequential)."
+        tests:
+          - not_null
+      - name: payment_sequential
+        description: "Payment sequence within the order. Part of the natural composite key (order_id, payment_sequential)."
+        tests:
+          - not_null
+      - name: payment_type
+        description: "Raw payment method (credit_card, boleto, voucher, debit_card, not_defined). Lowercased/trimmed only; no accepted_values test — not_defined is a legitimate raw value."
+      - name: payment_installments
+        description: "Number of installments. Cast from raw string via toUInt8OrNull; raw 0 values pass through unchanged."
+      - name: payment_value
+        description: "Payment value. Cast from raw string via toFloat64OrNull; 0 is legitimate (e.g. voucher-only orders), so the range test is >= 0."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - payment_sequential
