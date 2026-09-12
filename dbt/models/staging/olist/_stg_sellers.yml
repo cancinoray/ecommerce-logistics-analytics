@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_sellers
+    description: "One row per seller_id, renamed/cleaned pass-through of the raw sellers source. 1:1 with source, no dedup."
+    columns:
+      - name: seller_id
+        description: "Primary key. One row per seller_id."
+        tests:
+          - unique
+          - not_null
+
+      - name: seller_zip_code_prefix
+        description: "Zip prefix kept as string; leading zeros significant."
+
+      - name: seller_city
+        description: "Lowercased/trimmed city string, identical normalization to stg_customers for dim_location matching."
+
+      - name: seller_state
+        description: "Lowercased/trimmed state string, identical normalization to stg_customers for dim_location matching."
