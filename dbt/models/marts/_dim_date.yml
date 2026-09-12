@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Calendar dimension at one row per date. Synthetic spine from 2016-06-04 to 2019-02-12 (actual Olist bounds 2016-09-04 to 2018-11-12 plus 3-month buffer each side). Supports MoM/YoY joins for fct_orders and fct_order_items. Full-refresh, not incremental."
+    columns:
+      - name: date_day
+        description: "Primary key. One row per calendar date (type Date). Covers all order timestamps with 3-month buffer."
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: "Calendar year (e.g. 2017)."
+      - name: quarter
+        description: "Calendar quarter 1-4."
+      - name: month
+        description: "Calendar month 1-12."
+      - name: month_name
+        description: "English month name (January-December)."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      - name: week_of_year
+        description: "ISO 8601 week number 1-53 (Monday-Sunday, week 1 contains year's first Thursday) via toISOWeek()."
+      - name: day_of_week
+        description: "ISO day of week 1 (Monday) through 7 (Sunday) via toDayOfWeek()."
+        tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+      - name: is_weekend
+        description: "1 if Saturday (6) or Sunday (7), else 0."
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
