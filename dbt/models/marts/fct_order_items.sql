@@ -26,6 +26,6 @@ select
     i.price as price,
     i.freight_value as freight_value
 from items as i
-inner join orders as o on i.order_id = o.order_id
-inner join products as p on i.product_id = p.product_id
-inner join sellers as s on i.seller_id = s.seller_id
+left join orders as o on i.order_id = o.order_id
+left join products as p on i.product_id = p.product_id
+left join sellers as s on i.seller_id = s.seller_id
