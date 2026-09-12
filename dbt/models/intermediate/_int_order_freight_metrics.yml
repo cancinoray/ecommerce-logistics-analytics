@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_order_freight_metrics
+    description: "One row per order_id, grain-changing rollup from stg_order_items line-item grain. Per-order total_price, total_freight_value, and freight_ratio (total_freight / total_price, NULL when total_price = 0)."
+    columns:
+      - name: order_id
+        description: "Primary key. One row per order."
+        tests:
+          - unique
+          - not_null
+      - name: total_price
+        description: "Sum of price over all line items in the order."
+      - name: total_freight_value
+        description: "Sum of freight_value over all line items in the order."
+      - name: freight_ratio
+        description: "total_freight_value / total_price. NULL when total_price = 0."
