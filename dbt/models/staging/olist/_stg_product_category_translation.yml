@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_product_category_translation
+    description: "One row per product_category_name (Portuguese), pure rename pass-through of the raw product_category_name_translation source. 1:1 with source, no dedup."
+    columns:
+      - name: product_category_name
+        description: "Primary key. Portuguese category name."
+        tests:
+          - unique
+          - not_null
+
+      - name: product_category_name_english
+        description: "English translation of the category name."
+        tests:
+          - not_null
