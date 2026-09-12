@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_geolocation
+    description: "One row per zip_code_prefix, collapsed from many raw lat/lng samples per prefix. Deliberate deviation from 1:1-with-source staging convention."
+    columns:
+      - name: zip_code_prefix
+        description: "Primary key. One row per zip_code_prefix; zip kept as string, leading zeros significant."
+        tests:
+          - unique
+          - not_null
+
+      - name: lat
+        description: "Unweighted mean of raw latitudes per prefix (known limitation: no outlier filtering)."
+
+      - name: lng
+        description: "Unweighted mean of raw longitudes per prefix (known limitation: no outlier filtering)."
+
+      - name: city
+        description: "Most frequent city per prefix; ties broken by lexicographically first city."
+
+      - name: state
+        description: "State paired with the winning city per prefix."
