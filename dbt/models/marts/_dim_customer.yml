@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Customer dimension at one row per customer_unique_id (real person), grouped from stg_customers. Address attributes are the most-frequent (mode) zip/city/state per person, tie-broken by lowest customer_id. Full-refresh."
+    columns:
+      - name: customer_unique_id
+        description: "Primary key. Natural key of the real person, stable across repeat customer_id rows."
+        tests:
+          - unique
+          - not_null
+      - name: customer_zip_code_prefix
+        description: "Most-frequent zip prefix for this person (mode); deterministic tie-break by lowest customer_id."
+      - name: customer_city
+        description: "Most-frequent city for this person (mode); deterministic tie-break by lowest customer_id."
+      - name: customer_state
+        description: "Most-frequent state for this person (mode); deterministic tie-break by lowest customer_id."
