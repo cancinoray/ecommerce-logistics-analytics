@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: int_customer_experience_metrics
+    description: "One row per order_id, 1:1 with int_order_delivery_metrics. Review score alongside delivery severity."
+    columns:
+      - name: order_id
+        description: "Primary key. One row per order."
+        tests:
+          - unique
+          - not_null
