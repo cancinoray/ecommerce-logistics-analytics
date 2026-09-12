@@ -25,6 +25,18 @@ services:
     build:
       context: ./dbt
     command: ["tail", "-f", "/dev/null"]
+    volumes:
+      # Bind-mount project files so model/test edits are visible in the
+      # container without rebuilding the image. Individual paths (not
+      # ./dbt:/dbt) so the image-built /dbt/.venv and dbt_packages are
+      # not shadowed. Rebuild still required after pyproject.toml/uv.lock
+      # changes; `dbt deps` still required after packages.yml changes.
+      - ./dbt/models:/dbt/models
+      - ./dbt/tests:/dbt/tests
+      - ./dbt/dbt_project.yml:/dbt/dbt_project.yml
+      - ./dbt/profiles.yml:/dbt/profiles.yml
+      - ./dbt/packages.yml:/dbt/packages.yml
+      - ./dbt/package-lock.yml:/dbt/package-lock.yml
     environment:
       CLICKHOUSE_HOST: ${CLICKHOUSE_HOST:-clickhouse}
       CLICKHOUSE_PORT: ${CLICKHOUSE_PORT:-8123}
