@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_order_reviews
+    description: "One row per order_id: the most recent review by review_creation_date. Deliberate exception to the staging 1:1-with-source convention; raw order_reviews can hold multiple rows per order_id."
+    columns:
+      - name: order_id
+        description: "Primary key. One row per order after de-duplication to the most recent review."
+        tests:
+          - unique
+          - not_null
+
+      - name: review_id
+        description: "Identifier of the retained (most recent) review."
+
+      - name: review_score
+        description: "Reported review score, integer 1-5. Recorded value only; no bucketing or relabeling."
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+
+      - name: review_comment_title
+        description: "Lowercased/trimmed reported comment title. Nullable — NULL means no title was given."
+
+      - name: review_comment_message
+        description: "Lowercased/trimmed reported comment message. Nullable — NULL means no message was given."
+
+      - name: review_creation_date
+        description: "Timestamp the review was recorded."
+
+      - name: review_answer_timestamp
+        description: "Timestamp the review was answered. Nullable — NULL means unavailable."
