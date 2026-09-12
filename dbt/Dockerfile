@@ -12,6 +12,10 @@ RUN uv sync --locked --no-install-project
 
 COPY . .
 
+RUN chmod +x /dbt/entrypoint.sh
+
 ENV PATH="/dbt/.venv/bin:$PATH"
+
+ENTRYPOINT ["/dbt/entrypoint.sh"]
 
 CMD ["dbt", "--help"]

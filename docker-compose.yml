@@ -37,6 +37,7 @@ services:
       - ./dbt/profiles.yml:/dbt/profiles.yml
       - ./dbt/packages.yml:/dbt/packages.yml
       - ./dbt/package-lock.yml:/dbt/package-lock.yml
+      - ./dbt/entrypoint.sh:/dbt/entrypoint.sh
     environment:
       CLICKHOUSE_HOST: ${CLICKHOUSE_HOST:-clickhouse}
       CLICKHOUSE_PORT: ${CLICKHOUSE_PORT:-8123}
