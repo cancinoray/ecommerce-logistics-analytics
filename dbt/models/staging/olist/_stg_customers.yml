@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "One row per customer_id, renamed/cleaned pass-through of the raw customers source. 1:1 with source, no dedup; repeat customers keep one row per customer_id."
+    columns:
+      - name: customer_id
+        description: "Primary key. One row per customer_id (per-order in Olist design, not per person)."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_unique_id
+        description: "Stable person-level key shared across repeat customer_id rows; join key dim_customer uses to group to one row per person."
+        tests:
+          - not_null
+
+      - name: customer_zip_code_prefix
+        description: "Zip prefix kept as string; leading zeros significant."
+
+      - name: customer_city
+        description: "Lowercased/trimmed city string for reliable downstream geography matching."
+
+      - name: customer_state
+        description: "Lowercased/trimmed state string for reliable downstream geography matching."
