@@ -1,0 +1,85 @@
+version: 2
+
+sources:
+  - name: raw
+    database: raw
+    tables:
+      - name: orders
+        description: "One row per order_id."
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+              - unique
+
+      - name: order_items
+        description: "One row per (order_id, order_item_id)."
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: order_item_id
+            tests:
+              - not_null
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - order_id
+                  - order_item_id
+
+      - name: order_payments
+        description: "Multiple payment rows per order_id (installments) — no single natural key at this grain."
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+
+      - name: order_reviews
+        description: "An order can legitimately have more than one review row; review_id is not unique in the raw data."
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: review_id
+            tests:
+              - not_null
+
+      - name: customers
+        description: "One row per customer_id."
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+              - unique
+
+      - name: sellers
+        description: "One row per seller_id."
+        columns:
+          - name: seller_id
+            tests:
+              - not_null
+              - unique
+
+      - name: products
+        description: "One row per product_id."
+        columns:
+          - name: product_id
+            tests:
+              - not_null
+              - unique
+
+      - name: geolocation
+        description: "Many rows per geolocation_zip_code_prefix (multiple lat/lng points per prefix) — no unique test at this grain."
+        columns:
+          - name: geolocation_zip_code_prefix
+            tests:
+              - not_null
+
+      - name: product_category_name_translation
+        description: "One row per product_category_name."
+        columns:
+          - name: product_category_name
+            tests:
+              - not_null
+              - unique
