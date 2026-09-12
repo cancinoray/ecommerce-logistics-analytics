@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Product dimension at one row per product_id, straight 1:1 passthrough from stg_products. Nulls carried as-is (untranslated category, null/zero weight/dimensions)."
+    columns:
+      - name: product_id
+        description: "Primary key. Natural key of the product, 1:1 with stg_products."
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+        description: "Original Portuguese category name; nullable in source."
+      - name: product_category_name_english
+        description: "English category name; null for untranslated categories, carried as-is."
+      - name: product_name_lenght
+        description: "Product name length (source column spelled 'lenght')."
+      - name: product_description_lenght
+        description: "Product description length (source column spelled 'lenght')."
+      - name: product_photos_qty
+        description: "Number of product photos."
+      - name: product_weight_g
+        description: "Product weight in grams; may be null or 0 (source DQ issue), carried as-is."
+      - name: product_length_cm
+        description: "Product length in cm; may be null or 0 (source DQ issue), carried as-is."
+      - name: product_height_cm
+        description: "Product height in cm; may be null or 0 (source DQ issue), carried as-is."
+      - name: product_width_cm
+        description: "Product width in cm; may be null or 0 (source DQ issue), carried as-is."
