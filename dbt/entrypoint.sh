@@ -1,8 +1,9 @@
 #!/bin/sh
-# Install dbt package dependencies on container start so a fresh
-# container (or a packages.yml change) never fails with
-# "only 0 package(s) installed in dbt_packages". Afterwards exec
-# the service command (default: tail -f /dev/null to keep alive).
+# Sync the Python environment and dbt package dependencies on container
+# start, so neither a pyproject.toml/uv.lock change nor a packages.yml
+# change requires rebuilding the image. Afterwards exec the service
+# command (default: tail -f /dev/null to keep alive).
 set -e
+uv sync --locked --no-install-project
 dbt deps
 exec "$@"

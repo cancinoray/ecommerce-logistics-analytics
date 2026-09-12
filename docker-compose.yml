@@ -37,6 +37,10 @@ services:
       - ./dbt/profiles.yml:/dbt/profiles.yml
       - ./dbt/packages.yml:/dbt/packages.yml
       - ./dbt/package-lock.yml:/dbt/package-lock.yml
+      # Named volume for the venv (built by `uv sync` on start, not baked
+      # into the image) so pyproject.toml/uv.lock changes apply with just
+      # `docker compose restart dbt` instead of a rebuild.
+      - dbt-venv:/dbt/.venv
       - ./dbt/entrypoint.sh:/dbt/entrypoint.sh
     environment:
       CLICKHOUSE_HOST: ${CLICKHOUSE_HOST:-clickhouse}
@@ -52,3 +56,4 @@ volumes:
   clickhouse-data:
   metabase-data:
   metabase-plugins:
+  dbt-venv:
