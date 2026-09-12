@@ -1,0 +1,32 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_DB: analytics
+      CLICKHOUSE_USER: analytics
+      CLICKHOUSE_PASSWORD: analytics
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+
+  metabase:
+    image: metabase/metabase:v0.50.24
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase-data:/metabase-data
+      - metabase-plugins:/plugins
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+
+  dbt:
+    build:
+      context: ./dbt
+    command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  clickhouse-data:
+  metabase-data:
+  metabase-plugins:
