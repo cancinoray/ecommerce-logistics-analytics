@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: fct_order_items
+    description: "Secondary fact at one row per (order_id, order_item_id). Enriches stg_order_items with FK validation against fct_orders, dim_product, dim_seller via INNER JOINs; price and freight_value passed through unchanged. Full-refresh."
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_order_items')
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - order_item_id
+    columns:
+      - name: order_id
+        description: "Part of composite grain. Foreign key to fct_orders."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_orders')
+              field: order_id
+      - name: order_item_id
+        description: "Part of composite grain. Line-item sequence within the order."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to dim_product."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_id
+      - name: seller_id
+        description: "Foreign key to dim_seller."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_seller')
+              field: seller_id
+      - name: price
+        description: "Item price passed through unchanged from stg_order_items."
+      - name: freight_value
+        description: "Item freight value passed through unchanged from stg_order_items."
