@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: "One row per product_id, cleaned pass-through of the raw products source LEFT JOINed to stg_product_category_translation for English category names. 1:1 with source, no dedup."
+    columns:
+      - name: product_id
+        description: "Primary key. One row per product_id."
+        tests:
+          - unique
+          - not_null
+
+      - name: product_category_name
+        description: "Original Portuguese category name, null where missing upstream."
+
+      - name: product_category_name_english
+        description: "English category name from stg_product_category_translation; null when no translation row exists or raw category is null."
+
+      - name: product_name_lenght
+        description: "Product name length, cast to nullable numeric; nulls pass through."
+
+      - name: product_description_lenght
+        description: "Product description length, cast to nullable numeric; nulls pass through."
+
+      - name: product_photos_qty
+        description: "Number of product photos, cast to nullable numeric; nulls pass through."
+
+      - name: product_weight_g
+        description: "Product weight in grams, cast to nullable numeric; nulls/zeros pass through as-is, no coalesce."
+
+      - name: product_length_cm
+        description: "Product length in cm, cast to nullable numeric; nulls/zeros pass through as-is, no coalesce."
+
+      - name: product_height_cm
+        description: "Product height in cm, cast to nullable numeric; nulls/zeros pass through as-is, no coalesce."
+
+      - name: product_width_cm
+        description: "Product width in cm, cast to nullable numeric; nulls/zeros pass through as-is, no coalesce."
