@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_seller
+    description: "Seller dimension at one row per seller_id, straight passthrough/rename of stg_sellers. Full-refresh."
+    columns:
+      - name: seller_id
+        description: "Primary key. Natural key of the seller, 1:1 with stg_sellers."
+        tests:
+          - unique
+          - not_null
+      - name: seller_zip_code_prefix
+        description: "Zip prefix kept as string; leading zeros significant."
+      - name: seller_city
+        description: "Seller city."
+      - name: seller_state
+        description: "Seller state."
