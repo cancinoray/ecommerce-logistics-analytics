@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_order_items
+    description: "One row per (order_id, order_item_id) — clean, typed pass-through of the raw order_items source. No filtering or deduplication; price/freight_value cast to Float64."
+    columns:
+      - name: order_id
+        description: "FK to orders. Part of the natural composite key (order_id, order_item_id)."
+        tests:
+          - not_null
+      - name: order_item_id
+        description: "Line-item sequence within the order. Part of the natural composite key (order_id, order_item_id)."
+        tests:
+          - not_null
+      - name: product_id
+        description: "FK to products."
+      - name: seller_id
+        description: "FK to sellers."
+      - name: shipping_limit_date
+        description: "Seller shipping deadline. Cast from raw string via toDateTime64OrNull."
+      - name: price
+        description: "Line-item price. Cast from raw string via toFloat64OrNull."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+      - name: freight_value
+        description: "Line-item freight value. Cast from raw string via toFloat64OrNull."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - order_item_id
