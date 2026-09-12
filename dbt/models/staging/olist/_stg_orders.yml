@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "One row per order, renamed/typed pass-through of the raw orders source. No filtering or fan-out; delivery date columns preserve NULLs unmodified."
+    columns:
+      - name: order_id
+        description: "Primary key. One row per order."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "FK to the customer who placed the order."
+
+      - name: order_status
+        description: "Lowercased/trimmed raw order status string. No remapping or accepted_values validation."
+
+      - name: order_purchase_timestamp
+        description: "Timestamp the order was placed. Should never be missing."
+        tests:
+          - not_null
+
+      - name: order_approved_at
+        description: "Timestamp the order was approved. Nullable — NULL means unavailable, not a fake/default date."
+
+      - name: order_delivered_carrier_date
+        description: "Timestamp the order was handed to the carrier. Nullable — NULL means unavailable, not a fake/default date."
+
+      - name: order_delivered_customer_date
+        description: "Timestamp the order was delivered to the customer. Nullable — NULL means unavailable, not on-time; load-bearing for downstream delay/severity logic in int_order_delivery_metrics."
+
+      - name: order_estimated_delivery_date
+        description: "Estimated delivery timestamp from the raw source."
