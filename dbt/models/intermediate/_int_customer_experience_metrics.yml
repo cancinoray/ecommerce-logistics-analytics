@@ -13,6 +13,7 @@ models:
         description: "Review score 1-5, null when no review given."
         tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
+              arguments:
+                values: [1, 2, 3, 4, 5]
               config:
                 where: "review_score is not null"

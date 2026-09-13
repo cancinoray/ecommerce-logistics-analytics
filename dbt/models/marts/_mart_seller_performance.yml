@@ -5,17 +5,19 @@ models:
     description: "Seller performance rollup at one row per (seller_id, time_period), time_period = month start from order_purchase_timestamp. on_time_rate excludes 'Delivery data unavailable' from num and denom; avg_review_score over non-null only; order_volume = distinct orders. Full-refresh. Independently computes these per-seller-per-month metrics from the same upstream sources (stg_order_items, int_order_delivery_metrics, int_customer_experience_metrics) rather than building on top of int_seller_performance_metrics. This is by design, not duplication: int_seller_performance_metrics is an all-time, no-time_period snapshot, so it cannot supply the monthly grain this mart requires. See issue #18 for the original decision and issue #39 for the grooming confirmation."
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - seller_id
-            - time_period
+          arguments:
+            combination_of_columns:
+              - seller_id
+              - time_period
     columns:
       - name: seller_id
         description: "Part of composite grain. Foreign key to dim_seller."
         tests:
           - not_null
           - relationships:
-              to: ref('dim_seller')
-              field: seller_id
+              arguments:
+                to: ref('dim_seller')
+                field: seller_id
       - name: time_period
         description: "Part of composite grain. Month start, dateTrunc('month', order_purchase_timestamp)."
         tests:

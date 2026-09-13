@@ -5,19 +5,22 @@ models:
     description: "Secondary fact at one row per (order_id, order_item_id). Line-item-grain passthrough of stg_order_items; price and freight_value passed through unchanged. This model contains no joins: referential integrity to fct_orders, dim_product, and dim_seller is enforced by the relationships tests below rather than by SQL joins. Full-refresh."
     tests:
       - dbt_utils.equal_rowcount:
-          compare_model: ref('stg_order_items')
+          arguments:
+            compare_model: ref('stg_order_items')
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - order_id
-            - order_item_id
+          arguments:
+            combination_of_columns:
+              - order_id
+              - order_item_id
     columns:
       - name: order_id
         description: "Part of composite grain. Foreign key to fct_orders."
         tests:
           - not_null
           - relationships:
-              to: ref('fct_orders')
-              field: order_id
+              arguments:
+                to: ref('fct_orders')
+                field: order_id
       - name: order_item_id
         description: "Part of composite grain. Line-item sequence within the order."
         tests:
@@ -27,15 +30,17 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_product')
-              field: product_id
+              arguments:
+                to: ref('dim_product')
+                field: product_id
       - name: seller_id
         description: "Foreign key to dim_seller."
         tests:
           - not_null
           - relationships:
-              to: ref('dim_seller')
-              field: seller_id
+              arguments:
+                to: ref('dim_seller')
+                field: seller_id
       - name: price
         description: "Item price passed through unchanged from stg_order_items."
       - name: freight_value

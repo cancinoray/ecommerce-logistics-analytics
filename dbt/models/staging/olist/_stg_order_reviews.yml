@@ -17,7 +17,8 @@ models:
         description: "Reported review score, integer 1-5. Recorded value only; no bucketing or relabeling."
         tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
+              arguments:
+                values: [1, 2, 3, 4, 5]
 
       - name: review_comment_title
         description: "Lowercased/trimmed reported comment title. Nullable — NULL means no title was given."
