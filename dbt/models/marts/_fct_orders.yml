@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: fct_orders
-    description: "Primary fact at one row per order_id. Combines stg_orders with int_order_delivery_metrics, int_order_freight_metrics, int_customer_experience_metrics via LEFT JOINs, resolving customer_unique_id through stg_customers. Full-refresh."
+    description: "Primary fact at one row per order_id. Combines stg_orders with int_order_delivery_metrics, int_order_freight_metrics, int_customer_experience_metrics via LEFT JOINs, resolving customer_unique_id through stg_customers, and passing through customer_state/customer_city from dim_customer (unique per customer_unique_id, no fan-out). Full-refresh."
     tests:
       - dbt_utils.equal_rowcount:
           compare_model: ref('stg_orders')
@@ -30,3 +30,7 @@ models:
         description: "Freight ratio from int_order_freight_metrics; nullable, never coalesced."
       - name: review_score
         description: "Review score from int_customer_experience_metrics; nullable, never coalesced."
+      - name: customer_state
+        description: "Passthrough of dim_customer.customer_state via the customer_unique_id join; nullable when customer_unique_id has no matching dim_customer row (orphan FK, see #36)."
+      - name: customer_city
+        description: "Passthrough of dim_customer.customer_city via the customer_unique_id join; nullable when customer_unique_id has no matching dim_customer row (orphan FK, see #36)."

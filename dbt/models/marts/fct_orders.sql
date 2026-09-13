@@ -36,7 +36,9 @@ select
     freight.total_price as total_price,
     freight.total_freight_value as total_freight_value,
     freight.freight_ratio as freight_ratio,
-    experience.review_score as review_score
+    experience.review_score as review_score,
+    dc.customer_state as customer_state,
+    dc.customer_city as customer_city
 from orders as o
 left join customer_lookup as cl on o.customer_id = cl.customer_id
 left join delivery on o.order_id = delivery.order_id
