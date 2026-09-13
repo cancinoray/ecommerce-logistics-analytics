@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: fct_order_items
-    description: "Secondary fact at one row per (order_id, order_item_id). Enriches stg_order_items with FK validation against fct_orders, dim_product, dim_seller via LEFT JOINs; price and freight_value passed through unchanged. Full-refresh."
+    description: "Secondary fact at one row per (order_id, order_item_id). Line-item-grain passthrough of stg_order_items; price and freight_value passed through unchanged. This model contains no joins: referential integrity to fct_orders, dim_product, and dim_seller is enforced by the relationships tests below rather than by SQL joins. Full-refresh."
     tests:
       - dbt_utils.equal_rowcount:
           compare_model: ref('stg_order_items')
