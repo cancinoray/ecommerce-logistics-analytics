@@ -16,3 +16,9 @@ FROM metabase/metabase:v0.50.24
 
 # hadolint ignore=DL3022
 ADD https://github.com/ClickHouse/metabase-clickhouse-driver/releases/download/1.50.7/clickhouse.metabase-driver.jar /plugins/clickhouse.metabase-driver.jar
+
+# ADD-from-URL files land root-owned 0600, but the image runs Metabase as the
+# non-root `metabase` user -- without world-readable perms the jar is silently
+# skipped at plugin scan time ("Could not locate metabase/driver/clickhouse
+# on classpath") and the clickhouse engine stays unregistered.
+RUN chmod 644 /plugins/clickhouse.metabase-driver.jar
