@@ -1,0 +1,189 @@
+{
+  "archived": false,
+  "average_query_time": 222.6,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:21:45.219698Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "query": {
+      "aggregation": [
+        [
+          "count"
+        ],
+        [
+          "avg",
+          [
+            "field",
+            207,
+            null
+          ]
+        ]
+      ],
+      "breakout": [
+        [
+          "field",
+          200,
+          null
+        ]
+      ],
+      "source-table": 29
+    },
+    "type": "query"
+  },
+  "description": null,
+  "display": "bar",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "raSBvdBOtu0LAR5XWsTNX",
+  "id": 29,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:21:45.232284Z"
+  },
+  "last_query_start": "2026-09-13T14:42:19.661221Z",
+  "last_used_at": "2026-09-13T14:42:20.122469Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Delivery KPIs",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "query",
+  "result_metadata": [
+    {
+      "base_type": "type/Text",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Delivery Severity",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        200,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 5,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 7.8862,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 200,
+      "name": "delivery_severity",
+      "semantic_type": "type/Category",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/BigInteger",
+      "display_name": "Count",
+      "effective_type": "type/BigInteger",
+      "field_ref": [
+        "aggregation",
+        0
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 5,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 19888.2,
+            "max": 89941.0,
+            "min": 1802.0,
+            "q1": 1853.0,
+            "q3": 24709.0,
+            "sd": 39164.438853378204
+          }
+        }
+      },
+      "name": "count",
+      "semantic_type": "type/Quantity"
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "Average of Delay Days",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "aggregation",
+        1
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 5,
+          "nil%": 0.2
+        },
+        "type": {
+          "type/Number": {
+            "avg": 3.352055719639658,
+            "max": 19.576318546978694,
+            "min": -13.511501984634371,
+            "q1": -5.842649388039111,
+            "q3": 12.546760827318426,
+            "sd": 13.596842425521428
+          }
+        }
+      },
+      "name": "avg",
+      "semantic_type": null,
+      "settings": null
+    }
+  ],
+  "table_id": 29,
+  "type": "question",
+  "updated_at": "2026-09-12T13:21:45.219698Z",
+  "view_count": 9,
+  "visualization_settings": {
+    "graph.dimensions": [
+      "delivery_severity"
+    ],
+    "graph.metrics": [
+      "count",
+      "avg"
+    ]
+  }
+}

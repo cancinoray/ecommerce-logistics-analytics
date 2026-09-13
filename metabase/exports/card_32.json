@@ -1,0 +1,355 @@
+{
+  "archived": false,
+  "average_query_time": 202.2,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:21:45.687212Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "query": {
+      "fields": [
+        [
+          "field",
+          220,
+          null
+        ],
+        [
+          "field",
+          223,
+          null
+        ],
+        [
+          "field",
+          225,
+          null
+        ],
+        [
+          "field",
+          221,
+          null
+        ],
+        [
+          "field",
+          224,
+          null
+        ],
+        [
+          "field",
+          219,
+          null
+        ],
+        [
+          "field",
+          222,
+          null
+        ]
+      ],
+      "limit": 100,
+      "order-by": [
+        [
+          "desc",
+          [
+            "field",
+            225,
+            null
+          ]
+        ]
+      ],
+      "source-table": 32
+    },
+    "type": "query"
+  },
+  "description": null,
+  "display": "table",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "aM3Cr1bhmaTSxabp9sJix",
+  "id": 32,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:21:45.697719Z"
+  },
+  "last_query_start": "2026-09-13T14:42:19.661591Z",
+  "last_used_at": "2026-09-13T14:42:20.122469Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Seller Performance",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "query",
+  "result_metadata": [
+    {
+      "base_type": "type/Text",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Seller ID",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        220,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 2697,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 32.0,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 220,
+      "name": "seller_id",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Date",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Time Period",
+      "effective_type": "type/Date",
+      "field_ref": [
+        "field",
+        223,
+        {
+          "temporal-unit": "default"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 23,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2016-09-01",
+            "latest": "2018-09-01"
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 223,
+      "name": "time_period",
+      "semantic_type": null,
+      "settings": null,
+      "unit": "default",
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/BigInteger",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Order Volume",
+      "effective_type": "type/BigInteger",
+      "field_ref": [
+        "field",
+        225,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 125,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 5.992600000000002,
+            "max": 271.0,
+            "min": 1.0,
+            "q1": 1.3302166052413171,
+            "q3": 5.629079934972399,
+            "sd": 12.678042903152557
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 225,
+      "name": "order_volume",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "On Time Rate",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        221,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 240,
+          "nil%": 0.0235
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.9361215653514989,
+            "max": 1.0,
+            "min": 0.0,
+            "q1": 0.9948787414716236,
+            "q3": 1.0,
+            "sd": 0.18433006382431225
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 221,
+      "name": "on_time_rate",
+      "semantic_type": "type/Share",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Avg Review Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        224,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 570,
+          "nil%": 0.0024
+        },
+        "type": {
+          "type/Number": {
+            "avg": 4.082339406240139,
+            "max": 5.0,
+            "min": 1.0,
+            "q1": 3.7395163981415087,
+            "q3": 4.965021998682682,
+            "sd": 1.04726115204554
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 224,
+      "name": "avg_review_score",
+      "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Text",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Seller State",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        219,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 22,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 2.0,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.061,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 219,
+      "name": "seller_state",
+      "semantic_type": "type/Category",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Text",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Seller City",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        222,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 540,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 10.0075,
+            "percent-email": 0.0011,
+            "percent-json": 0.0,
+            "percent-state": 0.0006,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 222,
+      "name": "seller_city",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    }
+  ],
+  "table_id": 32,
+  "type": "question",
+  "updated_at": "2026-09-12T13:21:45.687212Z",
+  "view_count": 8,
+  "visualization_settings": {}
+}

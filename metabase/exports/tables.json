@@ -1,0 +1,60 @@
+{
+  "29": {
+    "fields": {
+      "194": "total_freight_value",
+      "195": "order_status",
+      "196": "order_approved_at",
+      "197": "total_price",
+      "198": "order_id",
+      "199": "order_purchase_timestamp",
+      "200": "delivery_severity",
+      "201": "freight_ratio",
+      "202": "order_delivered_carrier_date",
+      "203": "review_score",
+      "204": "order_delivered_customer_date",
+      "205": "customer_unique_id",
+      "206": "order_estimated_delivery_date",
+      "207": "delay_days",
+      "208": "customer_id",
+      "278": "customer_city",
+      "279": "customer_state"
+    },
+    "name": "fct_orders",
+    "schema": "marts"
+  },
+  "30": {
+    "fields": {
+      "209": "pct_orders_unavailable_delivery_data",
+      "210": "pct_orders_missing_review",
+      "211": "pct_orders_impossible_date_ordering",
+      "212": "order_month"
+    },
+    "name": "mart_data_quality",
+    "schema": "marts"
+  },
+  "31": {
+    "fields": {
+      "213": "customer_experience_score",
+      "214": "seller_score",
+      "215": "order_month",
+      "216": "delivery_score",
+      "217": "logistics_cost_score",
+      "218": "final_score"
+    },
+    "name": "mart_logistics_performance_score",
+    "schema": "marts"
+  },
+  "32": {
+    "fields": {
+      "219": "seller_state",
+      "220": "seller_id",
+      "221": "on_time_rate",
+      "222": "seller_city",
+      "223": "time_period",
+      "224": "avg_review_score",
+      "225": "order_volume"
+    },
+    "name": "mart_seller_performance",
+    "schema": "marts"
+  }
+}

@@ -1,0 +1,491 @@
+{
+  "archived": false,
+  "average_query_time": 280.25,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-13T13:29:54.684698Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "native": {
+      "query": "SELECT order_id, customer_id, customer_city, customer_state, order_status, order_purchase_timestamp, order_delivered_customer_date, order_estimated_delivery_date, delay_days, delivery_severity, review_score, total_price, total_freight_value, freight_ratio FROM fct_orders WHERE 1=1 [[AND customer_city = {{city}}]] [[AND customer_state = {{state}}]] ORDER BY order_purchase_timestamp DESC",
+      "template-tags": {
+        "city": {
+          "display-name": "Customer City",
+          "id": "010e17cb-5836-43f1-9661-2ed7f976c85f",
+          "name": "city",
+          "required": false,
+          "type": "text"
+        },
+        "state": {
+          "display-name": "Customer State",
+          "id": "20f5f0e9-3bb9-4b89-a671-e214502ff057",
+          "name": "state",
+          "required": false,
+          "type": "text"
+        }
+      }
+    },
+    "type": "native"
+  },
+  "description": "Row-level, one row per order, filterable by customer city and/or state, sourced directly from fct_orders raw customer_city/customer_state columns (no dim_location join).",
+  "display": "table",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "7rWTuJPhq4cEFGJy4zMUa",
+  "id": 42,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-13T13:29:54.710271Z"
+  },
+  "last_query_start": "2026-09-13T13:35:04.645192Z",
+  "last_used_at": "2026-09-13T13:35:04.653832Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Location Drill-Down (Orders, from fct_orders)",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "native",
+  "result_metadata": [
+    {
+      "base_type": "type/Text",
+      "display_name": "order_id",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "order_id",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 2000,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 32.0,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "order_id",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Text",
+      "display_name": "customer_id",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "customer_id",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 2000,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 32.0,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "customer_id",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Text",
+      "display_name": "customer_city",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "customer_city",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 491,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 10.3365,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0005,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "customer_city",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Text",
+      "display_name": "customer_state",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "customer_state",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 22,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 2.0,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0365,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "customer_state",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Text",
+      "display_name": "order_status",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "order_status",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 4,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 8.9615,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "order_status",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/DateTime",
+      "display_name": "order_purchase_timestamp",
+      "effective_type": "type/DateTime",
+      "field_ref": [
+        "field",
+        "order_purchase_timestamp",
+        {
+          "base-type": "type/DateTime"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1996,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2018-08-16T16:13:24Z",
+            "latest": "2018-10-17T17:30:18Z"
+          }
+        }
+      },
+      "name": "order_purchase_timestamp",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/DateTime",
+      "display_name": "order_delivered_customer_date",
+      "effective_type": "type/DateTime",
+      "field_ref": [
+        "field",
+        "order_delivered_customer_date",
+        {
+          "base-type": "type/DateTime"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1927,
+          "nil%": 0.0335
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2018-08-18T13:56:25Z",
+            "latest": "2018-09-10T22:38:43Z"
+          }
+        }
+      },
+      "name": "order_delivered_customer_date",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/DateTime",
+      "display_name": "order_estimated_delivery_date",
+      "effective_type": "type/DateTime",
+      "field_ref": [
+        "field",
+        "order_estimated_delivery_date",
+        {
+          "base-type": "type/DateTime"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 42,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2018-08-21T00:00:00Z",
+            "latest": "2018-11-12T00:00:00Z"
+          }
+        }
+      },
+      "name": "order_estimated_delivery_date",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/BigInteger",
+      "display_name": "delay_days",
+      "effective_type": "type/BigInteger",
+      "field_ref": [
+        "field",
+        "delay_days",
+        {
+          "base-type": "type/BigInteger"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 55,
+          "nil%": 0.0335
+        },
+        "type": {
+          "type/Number": {
+            "avg": -9.046042421107087,
+            "max": 13.0,
+            "min": -50.0,
+            "q1": -13.053530492662219,
+            "q3": -3.4729399890002113,
+            "sd": 7.854555924459144
+          }
+        }
+      },
+      "name": "delay_days",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Text",
+      "display_name": "delivery_severity",
+      "effective_type": "type/Text",
+      "field_ref": [
+        "field",
+        "delivery_severity",
+        {
+          "base-type": "type/Text"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 5,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Text": {
+            "average-length": 7.7095,
+            "percent-email": 0.0,
+            "percent-json": 0.0,
+            "percent-state": 0.0,
+            "percent-url": 0.0
+          }
+        }
+      },
+      "name": "delivery_severity",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Integer",
+      "display_name": "review_score",
+      "effective_type": "type/Integer",
+      "field_ref": [
+        "field",
+        "review_score",
+        {
+          "base-type": "type/Integer"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 6,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 4.345,
+            "max": 5.0,
+            "min": 0.0,
+            "q1": 4.03416293945364,
+            "q3": 5.0,
+            "sd": 1.1703246685919928
+          }
+        }
+      },
+      "name": "review_score",
+      "semantic_type": "type/Score"
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "total_price",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "total_price",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 817,
+          "nil%": 0.0255
+        },
+        "type": {
+          "type/Number": {
+            "avg": 119.90074397126726,
+            "max": 2300.0,
+            "min": 2.2,
+            "q1": 41.64229406146821,
+            "q3": 129.51082323009234,
+            "sd": 186.17015176003474
+          }
+        }
+      },
+      "name": "total_price",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "total_freight_value",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "total_freight_value",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1059,
+          "nil%": 0.0255
+        },
+        "type": {
+          "type/Number": {
+            "avg": 19.97687532067727,
+            "max": 148.88,
+            "min": 0.0,
+            "q1": 11.589339486743526,
+            "q3": 22.08855236396389,
+            "sd": 15.022301467299739
+          }
+        }
+      },
+      "name": "total_freight_value",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "freight_ratio",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "freight_ratio",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1561,
+          "nil%": 0.0255
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.307114899951725,
+            "max": 3.3590909090909085,
+            "min": 0.0,
+            "q1": 0.13404660948703,
+            "q3": 0.3905713622472304,
+            "sd": 0.27453722925768265
+          }
+        }
+      },
+      "name": "freight_ratio",
+      "semantic_type": null
+    }
+  ],
+  "table_id": null,
+  "type": "question",
+  "updated_at": "2026-09-13T13:29:58.371862Z",
+  "view_count": 7,
+  "visualization_settings": {}
+}

@@ -1,0 +1,215 @@
+{
+  "archived": false,
+  "average_query_time": 85.66666666666667,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:33:06.535554Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "native": {
+      "query": "SELECT toStartOfMonth(order_purchase_timestamp) AS month, avg(freight_ratio) AS avg_freight_ratio, avg(total_freight_value) AS avg_freight_value, sum(total_freight_value) AS sum_freight_value FROM fct_orders [[WHERE {{month}}]] GROUP BY month ORDER BY month",
+      "template-tags": {
+        "month": {
+          "default": null,
+          "dimension": [
+            "field",
+            199,
+            {
+              "base-type": "type/DateTime"
+            }
+          ],
+          "display-name": "Month",
+          "id": "a7fe60a1-6778-4ecd-9282-c5f0ef0e0db2",
+          "name": "month",
+          "type": "dimension",
+          "widget-type": "date/month-year"
+        }
+      }
+    },
+    "type": "native"
+  },
+  "description": null,
+  "display": "line",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "thO8NZK8tiv7E-0ImSz3M",
+  "id": 37,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:33:23.660919Z"
+  },
+  "last_query_start": "2026-09-13T14:09:54.067318Z",
+  "last_used_at": "2026-09-13T14:09:54.09313Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Logistics Cost by Month",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "native",
+  "result_metadata": [
+    {
+      "base_type": "type/Date",
+      "display_name": "month",
+      "effective_type": "type/Date",
+      "field_ref": [
+        "field",
+        "month",
+        {
+          "base-type": "type/Date"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2016-09-01T00:00:00Z",
+            "latest": "2018-10-01T00:00:00Z"
+          }
+        }
+      },
+      "name": "month",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "avg_freight_ratio",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "avg_freight_ratio",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.04
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.32726146162004843,
+            "max": 0.8,
+            "min": 0.148,
+            "q1": 0.30005055290131044,
+            "q3": 0.323466595182061,
+            "sd": 0.10865465748600829
+          }
+        }
+      },
+      "name": "avg_freight_ratio",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "avg_freight_value",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "avg_freight_value",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.04
+        },
+        "type": {
+          "type/Number": {
+            "avg": 22.30338013264439,
+            "max": 29.13,
+            "min": 8.72,
+            "q1": 21.759337918493973,
+            "q3": 23.2748286635251,
+            "sd": 3.413032909416951
+          }
+        }
+      },
+      "name": "avg_freight_value",
+      "semantic_type": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "sum_freight_value",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        "sum_freight_value",
+        {
+          "base-type": "type/Float"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.04
+        },
+        "type": {
+          "type/Number": {
+            "avg": 93829.56416666706,
+            "max": 171913.38000000222,
+            "min": 8.72,
+            "q1": 45736.30499999988,
+            "q3": 155267.8350000008,
+            "sd": 61067.45642362619
+          }
+        }
+      },
+      "name": "sum_freight_value",
+      "semantic_type": null
+    }
+  ],
+  "table_id": null,
+  "type": "question",
+  "updated_at": "2026-09-12T13:33:23.653739Z",
+  "view_count": 12,
+  "visualization_settings": {
+    "graph.dimensions": [
+      "month"
+    ],
+    "graph.metrics": [
+      "avg_freight_ratio",
+      "avg_freight_value",
+      "sum_freight_value"
+    ]
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "archived": false,
+  "average_query_time": 200.66666666666666,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:21:45.807457Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "query": {
+      "fields": [
+        [
+          "field",
+          212,
+          null
+        ],
+        [
+          "field",
+          209,
+          null
+        ],
+        [
+          "field",
+          210,
+          null
+        ],
+        [
+          "field",
+          211,
+          null
+        ]
+      ],
+      "order-by": [
+        [
+          "asc",
+          [
+            "field",
+            212,
+            null
+          ]
+        ]
+      ],
+      "source-table": 30
+    },
+    "type": "query"
+  },
+  "description": null,
+  "display": "line",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "a0zyFVwVjLUD41YdvbHhs",
+  "id": 33,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:21:45.816437Z"
+  },
+  "last_query_start": "2026-09-13T14:42:19.681548Z",
+  "last_used_at": "2026-09-13T14:42:20.122469Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Data Quality",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "query",
+  "result_metadata": [
+    {
+      "base_type": "type/Date",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Order Month",
+      "effective_type": "type/Date",
+      "field_ref": [
+        "field",
+        212,
+        {
+          "temporal-unit": "default"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2016-09-01",
+            "latest": "2018-10-01"
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 212,
+      "name": "order_month",
+      "semantic_type": null,
+      "settings": null,
+      "unit": "default",
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Pct Orders Unavailable Delivery Data",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        209,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 24,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.14375838338855731,
+            "max": 1.0,
+            "min": 0.0,
+            "q1": 0.025354499659642347,
+            "q3": 0.05365631991051454,
+            "sd": 0.2958430619236375
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 209,
+      "name": "pct_orders_unavailable_delivery_data",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Pct Orders Missing Review",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        210,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 23,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.009458757335730022,
+            "max": 0.0625,
+            "min": 0.0,
+            "q1": 0.006292903185727575,
+            "q3": 0.009003705643049906,
+            "sd": 0.011617366178315816
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 210,
+      "name": "pct_orders_missing_review",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Pct Orders Impossible Date Ordering",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        211,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.0,
+            "max": 0.0,
+            "min": 0.0,
+            "q1": 0.0,
+            "q3": 0.0,
+            "sd": 0.0
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 211,
+      "name": "pct_orders_impossible_date_ordering",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    }
+  ],
+  "table_id": 30,
+  "type": "question",
+  "updated_at": "2026-09-12T13:21:45.807457Z",
+  "view_count": 9,
+  "visualization_settings": {
+    "graph.dimensions": [
+      "order_month"
+    ],
+    "graph.metrics": [
+      "pct_orders_unavailable_delivery_data",
+      "pct_orders_missing_review",
+      "pct_orders_impossible_date_ordering"
+    ]
+  }
+}

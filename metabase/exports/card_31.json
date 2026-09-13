@@ -1,0 +1,147 @@
+{
+  "archived": false,
+  "average_query_time": 222.0,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:21:45.5269Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "query": {
+      "aggregation": [
+        [
+          "avg",
+          [
+            "field",
+            201,
+            null
+          ]
+        ],
+        [
+          "sum",
+          [
+            "field",
+            194,
+            null
+          ]
+        ]
+      ],
+      "source-table": 29
+    },
+    "type": "query"
+  },
+  "description": null,
+  "display": "scalar",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "cb5aTZdZYrFdiw3yakGfR",
+  "id": 31,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:21:45.536345Z"
+  },
+  "last_query_start": "2026-09-13T14:42:19.661646Z",
+  "last_used_at": "2026-09-13T14:42:20.122469Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Logistics Cost (Freight Ratio)",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "query",
+  "result_metadata": [
+    {
+      "base_type": "type/Float",
+      "display_name": "Average of Freight Ratio",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "aggregation",
+        0
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 0.30838868719738455,
+            "max": 0.30838868719738455,
+            "min": 0.30838868719738455,
+            "q1": 0.30838868719738455,
+            "q3": 0.30838868719738455,
+            "sd": null
+          }
+        }
+      },
+      "name": "avg",
+      "semantic_type": null,
+      "settings": null
+    },
+    {
+      "base_type": "type/Float",
+      "display_name": "Sum of Total Freight Value",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "aggregation",
+        1
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 1,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 2251909.5399999944,
+            "max": 2251909.5399999944,
+            "min": 2251909.5399999944,
+            "q1": 2251909.5399999944,
+            "q3": 2251909.5399999944,
+            "sd": null
+          }
+        }
+      },
+      "name": "sum",
+      "semantic_type": null,
+      "settings": null
+    }
+  ],
+  "table_id": 29,
+  "type": "question",
+  "updated_at": "2026-09-12T13:21:45.5269Z",
+  "view_count": 8,
+  "visualization_settings": {}
+}

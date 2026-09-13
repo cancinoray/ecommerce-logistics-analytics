@@ -1,0 +1,2123 @@
+{
+  "archived": false,
+  "auto_apply_filters": true,
+  "cache_ttl": null,
+  "can_write": true,
+  "caveats": null,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_authority_level": null,
+  "collection_id": null,
+  "collection_position": null,
+  "created_at": "2026-09-13T13:30:16.808709Z",
+  "creator_id": 1,
+  "dashcards": [
+    {
+      "action_id": null,
+      "card": {
+        "query_average_duration": null
+      },
+      "card_id": null,
+      "col": 0,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "Uz9Hmm-hPk4gYIOioznlT",
+      "id": 43,
+      "parameter_mappings": [],
+      "row": 0,
+      "series": [],
+      "size_x": 24,
+      "size_y": 3,
+      "updated_at": "2026-09-13T13:31:40.474768Z",
+      "visualization_settings": {
+        "text": "## Root Cause & Drill-Down\n\n**Association only \u2014 not a causal claim.** The charts below describe how review scores and freight costs are distributed across delivery-severity buckets. This is descriptive, pattern-level reporting only \u2014 no claim is made about what determines review scores or freight cost. Use the drill-down tables below to move from a pattern to the underlying seller, location, or order rows.",
+        "virtual_card": {
+          "archived": false,
+          "dataset_query": {},
+          "display": "text",
+          "name": null,
+          "visualization_settings": {}
+        }
+      }
+    },
+    {
+      "action_id": null,
+      "card": {
+        "archived": false,
+        "cache_invalidated_at": null,
+        "cache_ttl": null,
+        "can_write": true,
+        "collection_id": null,
+        "collection_position": null,
+        "collection_preview": true,
+        "created_at": "2026-09-13T13:29:00.678669Z",
+        "creator_id": 1,
+        "database_id": 2,
+        "dataset_query": {
+          "database": 2,
+          "native": {
+            "query": "SELECT review_score, delivery_severity, count(*) AS order_count FROM fct_orders GROUP BY review_score, delivery_severity ORDER BY review_score, delivery_severity"
+          },
+          "type": "native"
+        },
+        "description": "Association only \u2014 not a causal claim. Cross-tab of order counts by review_score and delivery_severity, straight GROUP BY from fct_orders. This is a descriptive association only, with no claim about what determines review scores.",
+        "display": "table",
+        "embedding_params": null,
+        "enable_embedding": false,
+        "entity_id": "L4xKef7i8Rb-qrSUR1xU8",
+        "id": 39,
+        "initially_published_at": null,
+        "last_used_at": "2026-09-13T13:33:53.391725Z",
+        "made_public_by_id": null,
+        "metabase_version": "v0.50.24 (3b63317)",
+        "moderation_reviews": [],
+        "name": "Review Score by Delivery Severity",
+        "parameter_mappings": [],
+        "parameters": [],
+        "public_uuid": null,
+        "query_average_duration": 27,
+        "query_type": "native",
+        "result_metadata": [
+          {
+            "base_type": "type/Integer",
+            "display_name": "review_score",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "review_score",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 6,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 2.5,
+                  "max": 5.0,
+                  "min": 0.0,
+                  "q1": 1.0,
+                  "q3": 4.0,
+                  "sd": 1.737020834449128
+                }
+              }
+            },
+            "name": "review_score",
+            "semantic_type": "type/Score"
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "delivery_severity",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "delivery_severity",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 5,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 14.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "delivery_severity",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/BigInteger",
+            "display_name": "order_count",
+            "effective_type": "type/BigInteger",
+            "field_ref": [
+              "field",
+              "order_count",
+              {
+                "base-type": "type/BigInteger"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 30,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 3314.7,
+                  "max": 55687.0,
+                  "min": 18.0,
+                  "q1": 150.0,
+                  "q3": 1024.0,
+                  "sd": 10517.035743874367
+                }
+              }
+            },
+            "name": "order_count",
+            "semantic_type": "type/Quantity"
+          }
+        ],
+        "table_id": null,
+        "type": "question",
+        "updated_at": "2026-09-13T13:31:26.135184Z",
+        "view_count": 4,
+        "visualization_settings": {}
+      },
+      "card_id": 39,
+      "col": 0,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "7GIKbXW8aQl_kdxMWt3bO",
+      "id": 44,
+      "parameter_mappings": [],
+      "row": 3,
+      "series": [],
+      "size_x": 12,
+      "size_y": 8,
+      "updated_at": "2026-09-13T13:30:48.316254Z",
+      "visualization_settings": {}
+    },
+    {
+      "action_id": null,
+      "card": {
+        "archived": false,
+        "cache_invalidated_at": null,
+        "cache_ttl": null,
+        "can_write": true,
+        "collection_id": null,
+        "collection_position": null,
+        "collection_preview": true,
+        "created_at": "2026-09-13T13:29:12.493994Z",
+        "creator_id": 1,
+        "database_id": 2,
+        "dataset_query": {
+          "database": 2,
+          "native": {
+            "query": "SELECT delivery_severity, avg(freight_ratio) AS avg_freight_ratio, avg(total_freight_value) AS avg_freight_value, avg(delay_days) AS avg_delay_days, count(*) AS order_count FROM fct_orders GROUP BY delivery_severity ORDER BY delivery_severity"
+          },
+          "type": "native"
+        },
+        "description": "Association only \u2014 not a causal claim. Average freight_ratio, total_freight_value, and delay_days grouped by delivery_severity, order-level, straight GROUP BY from fct_orders. Descriptive association only.",
+        "display": "bar",
+        "embedding_params": null,
+        "enable_embedding": false,
+        "entity_id": "HvwYPK1yXQiN0xwVXB3DH",
+        "id": 40,
+        "initially_published_at": null,
+        "last_used_at": "2026-09-13T13:29:12.493994Z",
+        "made_public_by_id": null,
+        "metabase_version": "v0.50.24 (3b63317)",
+        "moderation_reviews": [],
+        "name": "Freight Ratio by Delivery Severity (Order-Level, from fct_orders)",
+        "parameter_mappings": [],
+        "parameters": [],
+        "public_uuid": null,
+        "query_average_duration": 32,
+        "query_type": "native",
+        "result_metadata": [
+          {
+            "base_type": "type/Text",
+            "display_name": "delivery_severity",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "delivery_severity",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 13.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "delivery_severity",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "avg_freight_ratio",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "avg_freight_ratio",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 0.3176635124568176,
+                  "max": 0.3176635124568176,
+                  "min": 0.3176635124568176,
+                  "q1": 0.3176635124568176,
+                  "q3": 0.3176635124568176,
+                  "sd": null
+                }
+              }
+            },
+            "name": "avg_freight_ratio",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "avg_freight_value",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "avg_freight_value",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 23.582171122994612,
+                  "max": 23.582171122994612,
+                  "min": 23.582171122994612,
+                  "q1": 23.582171122994612,
+                  "q3": 23.582171122994612,
+                  "sd": null
+                }
+              }
+            },
+            "name": "avg_freight_value",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "avg_delay_days",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "avg_delay_days",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 1.8262032085561497,
+                  "max": 1.8262032085561497,
+                  "min": 1.8262032085561497,
+                  "q1": 1.8262032085561497,
+                  "q3": 1.8262032085561497,
+                  "sd": null
+                }
+              }
+            },
+            "name": "avg_delay_days",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/BigInteger",
+            "display_name": "order_count",
+            "effective_type": "type/BigInteger",
+            "field_ref": [
+              "field",
+              "order_count",
+              {
+                "base-type": "type/BigInteger"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 1870.0,
+                  "max": 1870.0,
+                  "min": 1870.0,
+                  "q1": 1870.0,
+                  "q3": 1870.0,
+                  "sd": null
+                }
+              }
+            },
+            "name": "order_count",
+            "semantic_type": "type/Quantity"
+          }
+        ],
+        "table_id": null,
+        "type": "question",
+        "updated_at": "2026-09-13T13:31:26.19038Z",
+        "view_count": 3,
+        "visualization_settings": {
+          "graph.dimensions": [
+            "delivery_severity"
+          ],
+          "graph.metrics": [
+            "avg_freight_ratio"
+          ]
+        }
+      },
+      "card_id": 40,
+      "col": 12,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "eXDKFLSsri844-5Ob8lfq",
+      "id": 45,
+      "parameter_mappings": [],
+      "row": 3,
+      "series": [],
+      "size_x": 12,
+      "size_y": 8,
+      "updated_at": "2026-09-13T13:30:48.316254Z",
+      "visualization_settings": {}
+    },
+    {
+      "action_id": null,
+      "card": {
+        "archived": false,
+        "cache_invalidated_at": null,
+        "cache_ttl": null,
+        "can_write": true,
+        "collection_id": null,
+        "collection_position": null,
+        "collection_preview": true,
+        "created_at": "2026-09-13T13:29:33.632335Z",
+        "creator_id": 1,
+        "database_id": 2,
+        "dataset_query": {
+          "database": 2,
+          "native": {
+            "query": "SELECT oi.order_id, oi.order_item_id, oi.product_id, oi.seller_id, oi.price, oi.freight_value, oi.shipping_limit_date, o.order_status, o.order_purchase_timestamp, o.order_delivered_customer_date, o.order_estimated_delivery_date, o.delay_days, o.delivery_severity, o.review_score, o.customer_city, o.customer_state FROM fct_order_items oi JOIN fct_orders o ON oi.order_id = o.order_id WHERE oi.seller_id = {{seller_id}} ORDER BY o.order_purchase_timestamp DESC",
+            "template-tags": {
+              "seller_id": {
+                "display-name": "Seller ID",
+                "id": "7efe6946-adb1-451e-9121-b0034bc622b9",
+                "name": "seller_id",
+                "required": true,
+                "type": "text"
+              }
+            }
+          },
+          "type": "native"
+        },
+        "description": "Row-level, one row per order item, filtered to a single seller_id. Sourced from fct_order_items joined to fct_orders.",
+        "display": "table",
+        "embedding_params": null,
+        "enable_embedding": false,
+        "entity_id": "isQiXcuBNYbirimfBKjzr",
+        "id": 41,
+        "initially_published_at": null,
+        "last_used_at": "2026-09-13T13:33:34.525398Z",
+        "made_public_by_id": null,
+        "metabase_version": "v0.50.24 (3b63317)",
+        "moderation_reviews": [],
+        "name": "Seller Drill-Down (Order Items, from fct_order_items joined to fct_orders)",
+        "parameter_mappings": [],
+        "parameters": [],
+        "public_uuid": null,
+        "query_average_duration": null,
+        "query_type": "native",
+        "result_metadata": [
+          {
+            "base_type": "type/Text",
+            "display_name": "order_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 138,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Integer",
+            "display_name": "order_item_id",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "order_item_id",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 3,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 1.0927152317880795,
+                  "max": 3.0,
+                  "min": 1.0,
+                  "q1": 1.0,
+                  "q3": 1.390138433573293,
+                  "sd": 0.313070670988377
+                }
+              }
+            },
+            "name": "order_item_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "product_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "product_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 23,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "product_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "seller_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "seller_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "seller_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "price",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "price",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 34,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 81.26960264900661,
+                  "max": 269.9,
+                  "min": 39.9,
+                  "q1": 47.98585076772058,
+                  "q3": 127.775,
+                  "sd": 44.1936324052956
+                }
+              }
+            },
+            "name": "price",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "freight_value",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "freight_value",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 89,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 19.28430463576159,
+                  "max": 57.25,
+                  "min": 9.27,
+                  "q1": 14.4875,
+                  "q3": 21.1125,
+                  "sd": 8.498779168908568
+                }
+              }
+            },
+            "name": "freight_value",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "shipping_limit_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "shipping_limit_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 138,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-03-21T09:19:06Z",
+                  "latest": "2018-08-22T21:30:14Z"
+                }
+              }
+            },
+            "name": "shipping_limit_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "order_status",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_status",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 3,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 8.966887417218542,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_status",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_purchase_timestamp",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_purchase_timestamp",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 138,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-03-15T09:19:06Z",
+                  "latest": "2018-08-18T21:19:10Z"
+                }
+              }
+            },
+            "name": "order_purchase_timestamp",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_delivered_customer_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_delivered_customer_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 135,
+                "nil%": 0.02649006622516556
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-03-24T14:13:20Z",
+                  "latest": "2018-08-23T16:38:51Z"
+                }
+              }
+            },
+            "name": "order_delivered_customer_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_estimated_delivery_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_estimated_delivery_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 97,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-04-07T00:00:00Z",
+                  "latest": "2018-09-03T00:00:00Z"
+                }
+              }
+            },
+            "name": "order_estimated_delivery_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/BigInteger",
+            "display_name": "delay_days",
+            "effective_type": "type/BigInteger",
+            "field_ref": [
+              "field",
+              "delay_days",
+              {
+                "base-type": "type/BigInteger"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 32,
+                "nil%": 0.02649006622516556
+              },
+              "type": {
+                "type/Number": {
+                  "avg": -10.108843537414966,
+                  "max": 78.0,
+                  "min": -23.0,
+                  "q1": -15.017949192431123,
+                  "q3": -8.145833333333334,
+                  "sd": 10.55781814561606
+                }
+              }
+            },
+            "name": "delay_days",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "delivery_severity",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "delivery_severity",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 5,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 7.841059602649007,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "delivery_severity",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Integer",
+            "display_name": "review_score",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "review_score",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 5,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 4.046357615894039,
+                  "max": 5.0,
+                  "min": 1.0,
+                  "q1": 3.444584024218499,
+                  "q3": 5.0,
+                  "sd": 1.3433180231271664
+                }
+              }
+            },
+            "name": "review_score",
+            "semantic_type": "type/Score"
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_city",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_city",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 100,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 10.298013245033113,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_city",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_state",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_state",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 18,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 2.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0728476821192053,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_state",
+            "semantic_type": null
+          }
+        ],
+        "table_id": null,
+        "type": "question",
+        "updated_at": "2026-09-13T13:29:33.632335Z",
+        "view_count": 5,
+        "visualization_settings": {}
+      },
+      "card_id": 41,
+      "col": 0,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "fEze0RCodQJeY6mFSZaF0",
+      "id": 46,
+      "parameter_mappings": [
+        {
+          "card_id": 41,
+          "parameter_id": "b80bc153",
+          "target": [
+            "variable",
+            [
+              "template-tag",
+              "seller_id"
+            ]
+          ]
+        }
+      ],
+      "row": 11,
+      "series": [],
+      "size_x": 24,
+      "size_y": 8,
+      "updated_at": "2026-09-13T13:30:48.316254Z",
+      "visualization_settings": {}
+    },
+    {
+      "action_id": null,
+      "card": {
+        "archived": false,
+        "cache_invalidated_at": null,
+        "cache_ttl": null,
+        "can_write": true,
+        "collection_id": null,
+        "collection_position": null,
+        "collection_preview": true,
+        "created_at": "2026-09-13T13:29:54.684698Z",
+        "creator_id": 1,
+        "database_id": 2,
+        "dataset_query": {
+          "database": 2,
+          "native": {
+            "query": "SELECT order_id, customer_id, customer_city, customer_state, order_status, order_purchase_timestamp, order_delivered_customer_date, order_estimated_delivery_date, delay_days, delivery_severity, review_score, total_price, total_freight_value, freight_ratio FROM fct_orders WHERE 1=1 [[AND customer_city = {{city}}]] [[AND customer_state = {{state}}]] ORDER BY order_purchase_timestamp DESC",
+            "template-tags": {
+              "city": {
+                "display-name": "Customer City",
+                "id": "010e17cb-5836-43f1-9661-2ed7f976c85f",
+                "name": "city",
+                "required": false,
+                "type": "text"
+              },
+              "state": {
+                "display-name": "Customer State",
+                "id": "20f5f0e9-3bb9-4b89-a671-e214502ff057",
+                "name": "state",
+                "required": false,
+                "type": "text"
+              }
+            }
+          },
+          "type": "native"
+        },
+        "description": "Row-level, one row per order, filterable by customer city and/or state, sourced directly from fct_orders raw customer_city/customer_state columns (no dim_location join).",
+        "display": "table",
+        "embedding_params": null,
+        "enable_embedding": false,
+        "entity_id": "7rWTuJPhq4cEFGJy4zMUa",
+        "id": 42,
+        "initially_published_at": null,
+        "last_used_at": "2026-09-13T13:35:04.653832Z",
+        "made_public_by_id": null,
+        "metabase_version": "v0.50.24 (3b63317)",
+        "moderation_reviews": [],
+        "name": "Location Drill-Down (Orders, from fct_orders)",
+        "parameter_mappings": [],
+        "parameters": [],
+        "public_uuid": null,
+        "query_average_duration": null,
+        "query_type": "native",
+        "result_metadata": [
+          {
+            "base_type": "type/Text",
+            "display_name": "order_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 2000,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 2000,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_city",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_city",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 491,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 10.3365,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0005,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_city",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_state",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_state",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 22,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 2.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0365,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_state",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "order_status",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_status",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 4,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 8.9615,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_status",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_purchase_timestamp",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_purchase_timestamp",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1996,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2018-08-16T16:13:24Z",
+                  "latest": "2018-10-17T17:30:18Z"
+                }
+              }
+            },
+            "name": "order_purchase_timestamp",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_delivered_customer_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_delivered_customer_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1927,
+                "nil%": 0.0335
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2018-08-18T13:56:25Z",
+                  "latest": "2018-09-10T22:38:43Z"
+                }
+              }
+            },
+            "name": "order_delivered_customer_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_estimated_delivery_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_estimated_delivery_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 42,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2018-08-21T00:00:00Z",
+                  "latest": "2018-11-12T00:00:00Z"
+                }
+              }
+            },
+            "name": "order_estimated_delivery_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/BigInteger",
+            "display_name": "delay_days",
+            "effective_type": "type/BigInteger",
+            "field_ref": [
+              "field",
+              "delay_days",
+              {
+                "base-type": "type/BigInteger"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 55,
+                "nil%": 0.0335
+              },
+              "type": {
+                "type/Number": {
+                  "avg": -9.046042421107087,
+                  "max": 13.0,
+                  "min": -50.0,
+                  "q1": -13.053530492662219,
+                  "q3": -3.4729399890002113,
+                  "sd": 7.854555924459144
+                }
+              }
+            },
+            "name": "delay_days",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "delivery_severity",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "delivery_severity",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 5,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 7.7095,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "delivery_severity",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Integer",
+            "display_name": "review_score",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "review_score",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 6,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 4.345,
+                  "max": 5.0,
+                  "min": 0.0,
+                  "q1": 4.03416293945364,
+                  "q3": 5.0,
+                  "sd": 1.1703246685919928
+                }
+              }
+            },
+            "name": "review_score",
+            "semantic_type": "type/Score"
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "total_price",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "total_price",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 817,
+                "nil%": 0.0255
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 119.90074397126726,
+                  "max": 2300.0,
+                  "min": 2.2,
+                  "q1": 41.64229406146821,
+                  "q3": 129.51082323009234,
+                  "sd": 186.17015176003474
+                }
+              }
+            },
+            "name": "total_price",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "total_freight_value",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "total_freight_value",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1059,
+                "nil%": 0.0255
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 19.97687532067727,
+                  "max": 148.88,
+                  "min": 0.0,
+                  "q1": 11.589339486743526,
+                  "q3": 22.08855236396389,
+                  "sd": 15.022301467299739
+                }
+              }
+            },
+            "name": "total_freight_value",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "freight_ratio",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "freight_ratio",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1561,
+                "nil%": 0.0255
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 0.307114899951725,
+                  "max": 3.3590909090909085,
+                  "min": 0.0,
+                  "q1": 0.13404660948703,
+                  "q3": 0.3905713622472304,
+                  "sd": 0.27453722925768265
+                }
+              }
+            },
+            "name": "freight_ratio",
+            "semantic_type": null
+          }
+        ],
+        "table_id": null,
+        "type": "question",
+        "updated_at": "2026-09-13T13:29:58.371862Z",
+        "view_count": 7,
+        "visualization_settings": {}
+      },
+      "card_id": 42,
+      "col": 0,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "tZGOU-Hn16qY-9FqIZ7c2",
+      "id": 47,
+      "parameter_mappings": [
+        {
+          "card_id": 42,
+          "parameter_id": "b973e638",
+          "target": [
+            "variable",
+            [
+              "template-tag",
+              "city"
+            ]
+          ]
+        },
+        {
+          "card_id": 42,
+          "parameter_id": "6945e3f8",
+          "target": [
+            "variable",
+            [
+              "template-tag",
+              "state"
+            ]
+          ]
+        }
+      ],
+      "row": 19,
+      "series": [],
+      "size_x": 24,
+      "size_y": 8,
+      "updated_at": "2026-09-13T13:30:48.316254Z",
+      "visualization_settings": {}
+    },
+    {
+      "action_id": null,
+      "card": {
+        "archived": false,
+        "cache_invalidated_at": null,
+        "cache_ttl": null,
+        "can_write": true,
+        "collection_id": null,
+        "collection_position": null,
+        "collection_preview": true,
+        "created_at": "2026-09-13T13:30:11.513102Z",
+        "creator_id": 1,
+        "database_id": 2,
+        "dataset_query": {
+          "database": 2,
+          "native": {
+            "query": "SELECT o.order_id, o.order_status, o.order_purchase_timestamp, o.order_delivered_customer_date, o.order_estimated_delivery_date, o.delay_days, o.delivery_severity, o.review_score, o.customer_city, o.customer_state, o.total_price, o.total_freight_value, o.freight_ratio, oi.order_item_id, oi.product_id, oi.seller_id, oi.price, oi.freight_value FROM fct_orders o JOIN fct_order_items oi ON o.order_id = oi.order_id WHERE o.order_id = {{order_id}} ORDER BY oi.order_item_id",
+            "template-tags": {
+              "order_id": {
+                "display-name": "Order ID",
+                "id": "d3a7f626-468d-466b-a2a1-6fb35f010275",
+                "name": "order_id",
+                "required": true,
+                "type": "text"
+              }
+            }
+          },
+          "type": "native"
+        },
+        "description": "Row-level, one row per order item, filtered to a single order_id. Sourced from fct_orders joined to fct_order_items.",
+        "display": "table",
+        "embedding_params": null,
+        "enable_embedding": false,
+        "entity_id": "5W3zaXGSBmifH2b4-R0xV",
+        "id": 43,
+        "initially_published_at": null,
+        "last_used_at": "2026-09-13T13:33:34.670833Z",
+        "made_public_by_id": null,
+        "metabase_version": "v0.50.24 (3b63317)",
+        "moderation_reviews": [],
+        "name": "Order Drill-Down (Order + Line Items, from fct_orders joined to fct_order_items)",
+        "parameter_mappings": [],
+        "parameters": [],
+        "public_uuid": null,
+        "query_average_duration": null,
+        "query_type": "native",
+        "result_metadata": [
+          {
+            "base_type": "type/Text",
+            "display_name": "order_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "order_status",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "order_status",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 9.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "order_status",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_purchase_timestamp",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_purchase_timestamp",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-09-13T08:59:02Z",
+                  "latest": "2017-09-13T08:59:02Z"
+                }
+              }
+            },
+            "name": "order_purchase_timestamp",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_delivered_customer_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_delivered_customer_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-09-20T23:43:48Z",
+                  "latest": "2017-09-20T23:43:48Z"
+                }
+              }
+            },
+            "name": "order_delivered_customer_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/DateTime",
+            "display_name": "order_estimated_delivery_date",
+            "effective_type": "type/DateTime",
+            "field_ref": [
+              "field",
+              "order_estimated_delivery_date",
+              {
+                "base-type": "type/DateTime"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/DateTime": {
+                  "earliest": "2017-09-29T00:00:00Z",
+                  "latest": "2017-09-29T00:00:00Z"
+                }
+              }
+            },
+            "name": "order_estimated_delivery_date",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/BigInteger",
+            "display_name": "delay_days",
+            "effective_type": "type/BigInteger",
+            "field_ref": [
+              "field",
+              "delay_days",
+              {
+                "base-type": "type/BigInteger"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": -9.0,
+                  "max": -9.0,
+                  "min": -9.0,
+                  "q1": -9.0,
+                  "q3": -9.0,
+                  "sd": null
+                }
+              }
+            },
+            "name": "delay_days",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "delivery_severity",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "delivery_severity",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 7.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "delivery_severity",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Integer",
+            "display_name": "review_score",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "review_score",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 5.0,
+                  "max": 5.0,
+                  "min": 5.0,
+                  "q1": 5.0,
+                  "q3": 5.0,
+                  "sd": null
+                }
+              }
+            },
+            "name": "review_score",
+            "semantic_type": "type/Score"
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_city",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_city",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 21.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_city",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "customer_state",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "customer_state",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 2.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "customer_state",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "total_price",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "total_price",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 58.9,
+                  "max": 58.9,
+                  "min": 58.9,
+                  "q1": 58.9,
+                  "q3": 58.9,
+                  "sd": null
+                }
+              }
+            },
+            "name": "total_price",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "total_freight_value",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "total_freight_value",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 13.29,
+                  "max": 13.29,
+                  "min": 13.29,
+                  "q1": 13.29,
+                  "q3": 13.29,
+                  "sd": null
+                }
+              }
+            },
+            "name": "total_freight_value",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "freight_ratio",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "freight_ratio",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 0.22563667232597623,
+                  "max": 0.22563667232597623,
+                  "min": 0.22563667232597623,
+                  "q1": 0.22563667232597623,
+                  "q3": 0.22563667232597623,
+                  "sd": null
+                }
+              }
+            },
+            "name": "freight_ratio",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Integer",
+            "display_name": "order_item_id",
+            "effective_type": "type/Integer",
+            "field_ref": [
+              "field",
+              "order_item_id",
+              {
+                "base-type": "type/Integer"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 1.0,
+                  "max": 1.0,
+                  "min": 1.0,
+                  "q1": 1.0,
+                  "q3": 1.0,
+                  "sd": null
+                }
+              }
+            },
+            "name": "order_item_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "product_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "product_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "product_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Text",
+            "display_name": "seller_id",
+            "effective_type": "type/Text",
+            "field_ref": [
+              "field",
+              "seller_id",
+              {
+                "base-type": "type/Text"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Text": {
+                  "average-length": 32.0,
+                  "percent-email": 0.0,
+                  "percent-json": 0.0,
+                  "percent-state": 0.0,
+                  "percent-url": 0.0
+                }
+              }
+            },
+            "name": "seller_id",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "price",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "price",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 58.9,
+                  "max": 58.9,
+                  "min": 58.9,
+                  "q1": 58.9,
+                  "q3": 58.9,
+                  "sd": null
+                }
+              }
+            },
+            "name": "price",
+            "semantic_type": null
+          },
+          {
+            "base_type": "type/Float",
+            "display_name": "freight_value",
+            "effective_type": "type/Float",
+            "field_ref": [
+              "field",
+              "freight_value",
+              {
+                "base-type": "type/Float"
+              }
+            ],
+            "fingerprint": {
+              "global": {
+                "distinct-count": 1,
+                "nil%": 0.0
+              },
+              "type": {
+                "type/Number": {
+                  "avg": 13.29,
+                  "max": 13.29,
+                  "min": 13.29,
+                  "q1": 13.29,
+                  "q3": 13.29,
+                  "sd": null
+                }
+              }
+            },
+            "name": "freight_value",
+            "semantic_type": null
+          }
+        ],
+        "table_id": null,
+        "type": "question",
+        "updated_at": "2026-09-13T13:30:11.513102Z",
+        "view_count": 5,
+        "visualization_settings": {}
+      },
+      "card_id": 43,
+      "col": 0,
+      "collection_authority_level": null,
+      "created_at": "2026-09-13T13:30:48.316254Z",
+      "dashboard_id": 5,
+      "dashboard_tab_id": null,
+      "entity_id": "T0O4wMe8zWHDLXgpQ-tZ7",
+      "id": 48,
+      "parameter_mappings": [
+        {
+          "card_id": 43,
+          "parameter_id": "96f8f852",
+          "target": [
+            "variable",
+            [
+              "template-tag",
+              "order_id"
+            ]
+          ]
+        }
+      ],
+      "row": 27,
+      "series": [],
+      "size_x": 24,
+      "size_y": 8,
+      "updated_at": "2026-09-13T13:30:48.316254Z",
+      "visualization_settings": {}
+    }
+  ],
+  "description": "Dashboard 3 \u2014 answers why are we seeing these problems. Cross-tabs review score against delivery severity and freight cost against delivery performance, plus row-level drill-downs by seller, location, and order. Built entirely on fct_orders and fct_order_items.",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "MLE2JuckOJ55ELdmY86po",
+  "id": 5,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-13T13:31:40.515427Z"
+  },
+  "last_used_param_values": {
+    "96f8f852": "00010242fe8c5a6d1ba2dd792cb16214",
+    "b80bc153": "48436dade18ac8b2bce089ec2a041202",
+    "b973e638": "rio de janeiro"
+  },
+  "made_public_by_id": null,
+  "name": "Root Cause & Drill-Down",
+  "param_fields": null,
+  "param_values": null,
+  "parameters": [
+    {
+      "id": "b80bc153",
+      "name": "Seller ID",
+      "sectionId": "string",
+      "slug": "seller_id",
+      "type": "string/="
+    },
+    {
+      "id": "b973e638",
+      "name": "Customer City",
+      "sectionId": "string",
+      "slug": "city",
+      "type": "string/="
+    },
+    {
+      "id": "6945e3f8",
+      "name": "Customer State",
+      "sectionId": "string",
+      "slug": "state",
+      "type": "string/="
+    },
+    {
+      "id": "96f8f852",
+      "name": "Order ID",
+      "sectionId": "string",
+      "slug": "order_id",
+      "type": "string/="
+    }
+  ],
+  "points_of_interest": null,
+  "position": null,
+  "public_uuid": null,
+  "show_in_getting_started": false,
+  "tabs": [],
+  "updated_at": "2026-09-13T13:31:40.474768Z",
+  "view_count": 13,
+  "width": "fixed"
+}

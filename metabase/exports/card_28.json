@@ -1,0 +1,329 @@
+{
+  "archived": false,
+  "average_query_time": 222.1818181818182,
+  "cache_invalidated_at": null,
+  "cache_ttl": null,
+  "can_run_adhoc_query": true,
+  "can_write": true,
+  "collection": {
+    "authority_level": null,
+    "can_write": true,
+    "id": "root",
+    "is_personal": false,
+    "metabase.models.collection.root/is-root?": true,
+    "name": "Our analytics"
+  },
+  "collection_id": null,
+  "collection_position": null,
+  "collection_preview": true,
+  "created_at": "2026-09-12T13:21:44.93299Z",
+  "creator": {
+    "common_name": "Ray Cancino",
+    "date_joined": "2026-09-12T05:52:37.539273Z",
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "is_qbnewb": false,
+    "is_superuser": true,
+    "last_login": "2026-09-13T14:49:35.795967Z",
+    "last_name": "Cancino"
+  },
+  "creator_id": 1,
+  "dashboard_count": 1,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "query": {
+      "fields": [
+        [
+          "field",
+          215,
+          null
+        ],
+        [
+          "field",
+          218,
+          null
+        ],
+        [
+          "field",
+          216,
+          null
+        ],
+        [
+          "field",
+          213,
+          null
+        ],
+        [
+          "field",
+          217,
+          null
+        ],
+        [
+          "field",
+          214,
+          null
+        ]
+      ],
+      "order-by": [
+        [
+          "asc",
+          [
+            "field",
+            215,
+            null
+          ]
+        ]
+      ],
+      "source-table": 31
+    },
+    "type": "query"
+  },
+  "description": null,
+  "display": "line",
+  "embedding_params": null,
+  "enable_embedding": false,
+  "entity_id": "HkRdP7JpIUzXYHtYf_FuX",
+  "id": 28,
+  "initially_published_at": null,
+  "last-edit-info": {
+    "email": "analytics@analytics.local",
+    "first_name": "Ray",
+    "id": 1,
+    "last_name": "Cancino",
+    "timestamp": "2026-09-12T13:21:44.975651Z"
+  },
+  "last_query_start": "2026-09-13T14:42:19.661504Z",
+  "last_used_at": "2026-09-13T14:42:20.122469Z",
+  "made_public_by_id": null,
+  "metabase_version": "v0.50.24 (3b63317)",
+  "moderation_reviews": [],
+  "name": "Logistics Performance Score & Components",
+  "parameter_mappings": [],
+  "parameter_usage_count": 0,
+  "parameters": [],
+  "public_uuid": null,
+  "query_type": "query",
+  "result_metadata": [
+    {
+      "base_type": "type/Date",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Order Month",
+      "effective_type": "type/Date",
+      "field_ref": [
+        "field",
+        215,
+        {
+          "temporal-unit": "default"
+        }
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/DateTime": {
+            "earliest": "2016-09-01",
+            "latest": "2018-10-01"
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 215,
+      "name": "order_month",
+      "semantic_type": null,
+      "settings": null,
+      "unit": "default",
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Final Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        218,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 84.30485943808014,
+            "max": 99.25397696105323,
+            "min": 19.62904124742759,
+            "q1": 88.29089116563365,
+            "q3": 92.31614986879862,
+            "sd": 19.676828252293625
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 218,
+      "name": "final_score",
+      "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Delivery Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        216,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 24,
+          "nil%": 0.08
+        },
+        "type": {
+          "type/Number": {
+            "avg": 92.01900776008615,
+            "max": 100.0,
+            "min": 0.0,
+            "q1": 95.74865459877076,
+            "q3": 97.92195636867525,
+            "sd": 20.325712094432973
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 216,
+      "name": "delivery_score",
+      "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Customer Experience Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        213,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.0
+        },
+        "type": {
+          "type/Number": {
+            "avg": 70.52040366732923,
+            "max": 100.0,
+            "min": 0.0,
+            "q1": 72.2335871276241,
+            "q3": 79.73779850669646,
+            "sd": 21.566452144034404
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 213,
+      "name": "customer_experience_score",
+      "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Logistics Cost Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        217,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 25,
+          "nil%": 0.04
+        },
+        "type": {
+          "type/Number": {
+            "avg": 98.47409631170025,
+            "max": 99.30992868897421,
+            "min": 96.26988480526605,
+            "q1": 98.49179042290318,
+            "q3": 98.60097109179313,
+            "sd": 0.5066179860839658
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 217,
+      "name": "logistics_cost_score",
+      "semantic_type": "type/Cost",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "description": null,
+      "display_name": "Seller Score",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        214,
+        null
+      ],
+      "fingerprint": {
+        "global": {
+          "distinct-count": 24,
+          "nil%": 0.08
+        },
+        "type": {
+          "type/Number": {
+            "avg": 92.05693000881983,
+            "max": 100.0,
+            "min": 0.0,
+            "q1": 95.76887060179396,
+            "q3": 97.93999672220197,
+            "sd": 20.328770884909183
+          }
+        }
+      },
+      "fk_target_field_id": null,
+      "id": 214,
+      "name": "seller_score",
+      "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    }
+  ],
+  "table_id": 31,
+  "type": "question",
+  "updated_at": "2026-09-12T13:21:44.93299Z",
+  "view_count": 15,
+  "visualization_settings": {
+    "graph.dimensions": [
+      "order_month"
+    ],
+    "graph.metrics": [
+      "final_score",
+      "delivery_score",
+      "customer_experience_score",
+      "logistics_cost_score",
+      "seller_score"
+    ]
+  }
+}
