@@ -38,6 +38,7 @@
       "size_y": 3,
       "updated_at": "2026-09-13T13:31:40.474768Z",
       "visualization_settings": {
+        "text_card_key": "association-only",
         "text": "## Root Cause & Drill-Down\n\n**Association only \u2014 not a causal claim.** The charts below describe how review scores and freight costs are distributed across delivery-severity buckets. This is descriptive, pattern-level reporting only \u2014 no claim is made about what determines review scores or freight cost. Use the drill-down tables below to move from a pattern to the underlying seller, location, or order rows.",
         "virtual_card": {
           "archived": false,

@@ -16,15 +16,30 @@ against ``MB_URL``:
   3. Recreates the 16 project cards matched by name, remapping the live
      ``source-table`` / ``field`` / ``database`` IDs to the recreated ones
      via (schema, table, column) name lookups -- never hard-coding IDs.
+     Each dashcard's ``parameter_mappings`` is remapped the same way (to the
+     recreated field IDs and card IDs) so dashboard filters stay wired.
   4. Recreates the 4 dashboards matched by name, including the non-query
      dashcards verbatim (dashboard 5's "Association only" text card,
      dashboard 6's three link cards with URLs remapped to the recreated
-     dashboard IDs).
+     dashboard IDs). On re-run it also reconciles each existing dashboard's
+     description and each existing dashcard's geometry and
+     visualization_settings in place, matched by identity rather than by
+     position.
   5. Points the ``custom-homepage-dashboard`` setting at the recreated Home
      dashboard.
 
-Re-running against an already-configured instance is a no-op: everything is
-matched by name (check-then-create), sample content is never touched.
+Re-running against an already-configured instance is a no-op once state
+matches: everything is matched by name (check-then-create) or by dashcard
+identity, only drifted fields are written, and sample content is never
+touched. Text cards carry a stable ``text_card_key`` in their
+``visualization_settings`` so editing the copy updates the card instead of
+duplicating it.
+
+Two things this script assumes but can only confirm against a live instance:
+Metabase persists the custom ``text_card_key`` inside a text dashcard's
+``visualization_settings`` (if it strips unknown keys, the card is recreated
+rather than updated), and a replayed ``parameter_mappings`` round-trips to the
+same shape it was exported in (otherwise the reconcile writes every run).
 
 Python stdlib only (repo rule: no new Python dependencies).
 """
@@ -49,6 +64,11 @@ EXPORT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exports")
 
 MARTS_DB_NAME = "ClickHouse (marts, staging, intermediate)"
 RAW_DB_NAME = "ClickHouse (raw)"
+
+# Stable identity for non-query text cards, stored inside
+# ``visualization_settings``. Keying a text card on its rendered text would
+# read an edited card as a brand-new one (see the persistence caveat above).
+TEXT_CARD_KEY = "text_card_key"
 
 # Old dashboard IDs (live, 2026-09-13) in export-file order -> dashboard name,
 # used to remap dashboard 6's link-card URLs to the recreated IDs.
@@ -322,17 +342,50 @@ def link_target_name(viz):
     return None
 
 
+def text_card_key(viz):
+    return (viz or {}).get(TEXT_CARD_KEY)
+
+
 def dashcard_identity(dashcard, dashboard_ids_by_name):
-    """Hashable identity used to detect already-replayed dashcards."""
+    """Hashable identity used to detect already-replayed dashcards.
+
+    Text cards are keyed on their stable ``text_card_key`` rather than their
+    rendered text, so editing the copy updates the existing card instead of
+    adding a duplicate. Link cards are keyed on their target dashboard.
+    """
     viz = dashcard.get("visualization_settings") or {}
     if dashcard.get("card_id") is not None:
         return ("card", dashcard["card_id"])
-    if "text" in viz:
+    if viz.get("virtual_card", {}).get("display") == "text" or "text" in viz:
+        key = text_card_key(viz)
+        if key is not None:
+            return ("text", key)
         return ("text", viz.get("text"))
     target = link_target_name(viz)
     if target is not None:
         return ("link", dashboard_ids_by_name.get(target, target))
     return ("unknown", json.dumps(viz, sort_keys=True))
+
+
+def find_existing_dashcard(by_identity, export_identity):
+    """Pop the live dashcard matching this export entry, or return None.
+
+    Falls back to adopting a keys-less legacy text card (created before
+    ``text_card_key`` existed) so the first re-run upgrades it in place
+    rather than adding a duplicate. Only adopted when unambiguous.
+    """
+    existing = by_identity.pop(export_identity, None)
+    if existing is not None:
+        return existing
+    if export_identity[0] == "text":
+        legacy = [(ident, card) for ident, card in by_identity.items()
+                  if ident[0] == "text"
+                  and text_card_key(card["visualization_settings"]) is None]
+        if len(legacy) == 1:
+            ident, card = legacy[0]
+            by_identity.pop(ident)
+            return card
+    return None
 
 
 def remap_dashcard_viz(viz, dashboard_ids_by_name, old_dashboards_by_id):
@@ -349,39 +402,66 @@ def remap_dashcard_viz(viz, dashboard_ids_by_name, old_dashboards_by_id):
     return viz
 
 
+def remap_parameter_mappings(mappings, field_map, new_card_id):
+    """Rewrite old field/card IDs inside a dashcard's parameter_mappings.
+
+    Dashboard-level parameters are replayed verbatim, so the mappings that
+    bind them to a card's column (``["dimension", ["field", <old_id>, ...]]``)
+    must point at the recreated field IDs and ``card_id`` at the recreated
+    card. ``template-tag`` / ``variable`` targets carry no IDs and pass
+    through unchanged.
+    """
+    out = []
+    for mapping in mappings or []:
+        mapping = json.loads(json.dumps(mapping))  # deep copy
+        if "card_id" in mapping:
+            mapping["card_id"] = new_card_id
+        if "target" in mapping:
+            mapping["target"] = remap_query(mapping["target"], {}, {},
+                                            field_map)
+        out.append(mapping)
+    return out
+
+
 def ensure_dashboard(token, export, card_ids_by_name, dashboard_ids_by_name,
-                     old_dashboards_by_id):
+                     old_dashboards_by_id, field_map):
     name = export["name"]
     existing = None
     for dash in api("GET", "/api/dashboard", token=token):
         if dash["name"] == name and not dash.get("archived", False):
             existing = dash
             break
+    description = export.get("description")
     if existing is None:
         created = api("POST", "/api/dashboard", token=token, data={
-            "name": name, "description": export.get("description")})
+            "name": name, "description": description})
         dashboard_id = created["id"]
         print(f"Created dashboard {name!r} (id {dashboard_id})", flush=True)
     else:
         dashboard_id = existing["id"]
         print(f"Dashboard {name!r} already exists (id {dashboard_id})",
               flush=True)
+        if existing.get("description") != description:
+            api("PUT", f"/api/dashboard/{dashboard_id}", token=token,
+                data={"description": description})
+            print(f"Dashboard {name!r}: updated description", flush=True)
     dashboard_ids_by_name[name] = dashboard_id
 
     full = api("GET", f"/api/dashboard/{dashboard_id}", token=token)
-    have = {dashcard_identity(dc, dashboard_ids_by_name)
-            for dc in full.get("dashcards", [])}
     current = [
         {"id": dc["id"], "card_id": dc.get("card_id"), "row": dc["row"],
          "col": dc["col"], "size_x": dc["size_x"], "size_y": dc["size_y"],
-         "series": dc.get("series", []),
-         "visualization_settings": dc.get("visualization_settings", {}),
-         "parameter_mappings": dc.get("parameter_mappings", [])}
+         "series": dc.get("series") or [],
+         "visualization_settings": dc.get("visualization_settings") or {},
+         "parameter_mappings": dc.get("parameter_mappings") or []}
         for dc in full.get("dashcards", [])
     ]
+    by_identity = {dashcard_identity(entry, dashboard_ids_by_name): entry
+                   for entry in current}
 
     temp_id = -1
     added = 0
+    updated = 0
     for dc in export.get("dashcards", []):
         viz = dc.get("visualization_settings") or {}
         if dc.get("card_id") is not None:
@@ -391,29 +471,44 @@ def ensure_dashboard(token, export, card_ids_by_name, dashboard_ids_by_name,
                 raise APIError(
                     f"card {card_name!r} on dashboard {name!r} was not "
                     f"recreated")
-            identity = ("card", new_card_id)
             entry_viz = viz
         else:
             entry_viz = remap_dashcard_viz(viz, dashboard_ids_by_name,
                                            old_dashboards_by_id)
-            identity = dashcard_identity({"card_id": None,
-                                          "visualization_settings": entry_viz},
-                                         dashboard_ids_by_name)
             new_card_id = None
-        if identity in have:
+        entry_pm = remap_parameter_mappings(dc.get("parameter_mappings"),
+                                            field_map, new_card_id)
+        identity = dashcard_identity(
+            {"card_id": new_card_id, "visualization_settings": entry_viz},
+            dashboard_ids_by_name)
+        geometry = {"row": dc["row"], "col": dc["col"],
+                    "size_x": dc["size_x"], "size_y": dc["size_y"]}
+        target = find_existing_dashcard(by_identity, identity)
+        if target is not None:
+            changed = False
+            for field, value in geometry.items():
+                if target[field] != value:
+                    target[field] = value
+                    changed = True
+            if target["visualization_settings"] != entry_viz:
+                target["visualization_settings"] = entry_viz
+                changed = True
+            if target["parameter_mappings"] != entry_pm:
+                target["parameter_mappings"] = entry_pm
+                changed = True
+            if changed:
+                updated += 1
             continue
-        current.append({"id": temp_id, "card_id": new_card_id,
-                        "row": dc["row"], "col": dc["col"],
-                        "size_x": dc["size_x"], "size_y": dc["size_y"],
+        current.append({"id": temp_id, "card_id": new_card_id, **geometry,
                         "series": [], "visualization_settings": entry_viz,
-                        "parameter_mappings": []})
+                        "parameter_mappings": entry_pm})
         temp_id -= 1
-        have.add(identity)
         added += 1
-    if added:
+    if added or updated:
         api("PUT", f"/api/dashboard/{dashboard_id}", token=token,
             data={"dashcards": current})
-        print(f"Dashboard {name!r}: added {added} dashcard(s)", flush=True)
+        print(f"Dashboard {name!r}: added {added}, updated {updated} "
+              f"dashcard(s)", flush=True)
     else:
         print(f"Dashboard {name!r}: already complete "
               f"({len(current)} dashcards)", flush=True)
@@ -444,7 +539,8 @@ def main():
     # Replay in export order so link targets on Home resolve: Home is last.
     for export in dashboards:
         ensure_dashboard(token, export, card_ids_by_name,
-                         dashboard_ids_by_name, old_dashboards_by_id)
+                         dashboard_ids_by_name, old_dashboards_by_id,
+                         field_map)
 
     home_id = dashboard_ids_by_name[HOME_DASHBOARD_NAME]
     api("PUT", "/api/setting/custom-homepage", token=token,

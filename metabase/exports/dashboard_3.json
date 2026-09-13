@@ -1675,7 +1675,7 @@
       "visualization_settings": {}
     }
   ],
-  "description": null,
+  "description": "How are we performing? The logistics performance score with its delivery, customer experience, logistics cost, and seller components, plus delivery KPIs, customer experience, seller performance, data quality, and MoM/YoY volume and review trends. Sourced from the mart models; no business logic recomputed.",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "vEocuHBpt9Q_y_67SA3oC",
