@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_location
-    description: "Geography reference dimension at one row per zip_code_prefix, straight passthrough of stg_geolocation (#14). Full-refresh."
+    description: "Geography reference dimension at one row per zip_code_prefix, straight passthrough of stg_geolocation (#14). Full-refresh. Intentionally standalone: dim_customer (#21) and dim_seller (#22) already carry their own raw geography attributes (customer_state/customer_city, seller_state/seller_city), so no fact or dim joins to this table. Not an orphan/bug — decided in #24, independently reconfirmed by #32 and #33 (dashboard grooming, both explicitly chose not to use dim_location), and documented here per #41."
     columns:
       - name: zip_code_prefix
         description: "Primary key. Zip prefix kept as string; leading zeros significant."
