@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: int_seller_performance_metrics
-    description: "One row per seller_id. All-time delivery on-time rate, average review score, and order volume per seller."
+    description: "All-time per-seller snapshot (one row per seller_id): delivery on-time rate, average review score, and order volume. Intentionally standalone — not built on top of by mart_seller_performance, since that model needs a (seller_id, time_period) monthly grain this model deliberately does not have. Has no downstream model consumers by design; correctness is enforced by its own tests (assert_int_seller_order_volume_positive, assert_int_seller_on_time_rate_range), not by a mart consumer. See issue #18 for the original grain decision and issue #39 for confirmation this is the intended, resolved state."
     columns:
       - name: seller_id
         description: "Primary key. One row per seller."
