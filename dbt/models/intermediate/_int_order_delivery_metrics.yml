@@ -2,18 +2,25 @@ version: 2
 
 models:
   - name: int_order_delivery_metrics
-    description: "One row per order_id, 1:1 with stg_orders. Per-order delivery delay_days and severity classification."
+    description: "One row per order_id, 1:1 with stg_orders. Per-order delivery delay_days and severity classification. Order status is evaluated first: canceled/unavailable orders are classified 'Canceled or unavailable' (delay_days NULL) rather than being reported as a delivery-data gap."
     columns:
       - name: order_id
         description: "Primary key. One row per order."
         tests:
           - unique
           - not_null
+      - name: order_status
+        description: "Order status passed through from stg_orders; drives the status-first severity rule."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
       - name: delay_days
-        description: "dateDiff day(delivered_customer - estimated_delivery). NULL if either date is NULL."
+        description: "dateDiff day(delivered_customer - estimated_delivery). NULL when the order is canceled/unavailable or either date is NULL."
       - name: severity
-        description: "One of: On Time, 1-3 days late, 4-7 days late, 8+ days late, Delivery data unavailable."
+        description: "One of: On Time, 1-3 days late, 4-7 days late, 8+ days late, Delivery data unavailable, Canceled or unavailable."
         tests:
           - accepted_values:
               arguments:
-                values: ['On Time', '1-3 days late', '4-7 days late', '8+ days late', 'Delivery data unavailable']
+                values: ['On Time', '1-3 days late', '4-7 days late', '8+ days late', 'Delivery data unavailable', 'Canceled or unavailable']
