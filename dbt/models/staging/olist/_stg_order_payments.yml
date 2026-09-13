@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_order_payments
-    description: "One row per (order_id, payment_sequential) — clean, typed pass-through of the raw order_payments source. No filtering or deduplication; an order can have multiple payment rows (split payments/installments) by design."
+    description: "One row per (order_id, payment_sequential) — clean, typed pass-through of the raw order_payments source. No filtering or deduplication; an order can have multiple payment rows (split payments/installments) by design.\n\nNOTE (intentionally unreferenced downstream — not a lineage gap): this model has zero model children in the dbt DAG, and that is by design, not an oversight. This project's scope per `_docs/plan.md` is logistics analytics — delivery performance, freight/logistics cost, seller performance, geography, customer experience, and data quality — none of which calls for payment-method, installment, or payment-value analysis; plan.md's Data Model and Metric Dictionary sections name no payments fact/dim, and \"logistics cost\" there refers to freight, not payment/finance data. `stg_order_payments` is kept at the staging layer per this project's dbt convention of staging every source table regardless of downstream use, so it remains available if a real need ever arises. See issue #40 for the grooming decision and full rationale. If a genuine payment-method/installment/freight-to-payment analytical need surfaces later, groom a new task against the then-current plan.md scope rather than re-flagging this model's orphan status as a bug."
     columns:
       - name: order_id
         description: "FK to orders. Part of the natural composite key (order_id, payment_sequential)."
