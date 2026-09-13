@@ -5,6 +5,7 @@
 select
     order_month,
     pct_orders_unavailable_delivery_data,
+    pct_orders_canceled_or_unavailable,
     pct_orders_missing_review,
     pct_orders_impossible_date_ordering
 from {{ ref('int_data_quality_flags') }}
