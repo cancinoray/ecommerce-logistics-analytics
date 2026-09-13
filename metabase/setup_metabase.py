@@ -153,23 +153,52 @@ def login_or_setup():
             f"password, reset it manually (see issue #30).") from exc
 
 
-def ensure_database(token, name, dbname):
+def ensure_database(token, name, dbname, timeout_s=1800):
+    """Create a ClickHouse connection by name, waiting for ClickHouse first.
+
+    On a fresh `docker compose up` the ClickHouse databases may not exist
+    yet (raw data load + `dbt run` happen independently of Metabase), and
+    Metabase validates the connection on create -- so retry until the
+    database is reachable instead of failing on the first attempt.
+    """
     dbs = api("GET", "/api/database", token=token)["data"]
     for db in dbs:
         if db["name"] == name and not db.get("archived", False):
             print(f"Database {name!r} already exists (id {db['id']})",
                   flush=True)
             return db["id"]
-    db = api("POST", "/api/database", token=token, data={
-        "name": name,
-        "engine": "clickhouse",
-        "details": {"host": CH_HOST, "port": CH_PORT, "dbname": dbname,
-                    "user": CH_USER, "password": CH_PASSWORD,
-                    "ssl": False},
-    })
-    print(f"Created database {name!r} (id {db['id']}, dbname {dbname})",
-          flush=True)
-    return db["id"]
+    deadline = time.time() + timeout_s
+    attempt = 0
+    while True:
+        attempt += 1
+        try:
+            db = api("POST", "/api/database", token=token, data={
+                "name": name,
+                "engine": "clickhouse",
+                "details": {"host": CH_HOST, "port": CH_PORT,
+                            "dbname": dbname, "user": CH_USER,
+                            "password": CH_PASSWORD, "ssl": False},
+            })
+            print(f"Created database {name!r} (id {db['id']}, "
+                  f"dbname {dbname})", flush=True)
+            return db["id"]
+        except APIError as exc:
+            # Re-check by name in case a concurrent run created it.
+            dbs = api("GET", "/api/database", token=token)["data"]
+            for db in dbs:
+                if db["name"] == name and not db.get("archived", False):
+                    print(f"Database {name!r} already exists "
+                          f"(id {db['id']})", flush=True)
+                    return db["id"]
+            if time.time() >= deadline:
+                raise APIError(
+                    f"gave up creating database {name!r} (dbname "
+                    f"{dbname}) after {attempt} attempts: {exc}. "
+                    f"Is the {dbname} database loaded in ClickHouse "
+                    f"(scripts/load_raw.sh + dbt run)?") from exc
+            print(f"Database {name!r} not reachable yet (attempt "
+                  f"{attempt}): {exc} -- retrying ...", flush=True)
+            time.sleep(15)
 
 
 def wait_for_sync(token, db_id, name, required_tables, timeout_s=600):
