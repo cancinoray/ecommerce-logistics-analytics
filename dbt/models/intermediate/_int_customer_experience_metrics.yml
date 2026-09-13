@@ -15,5 +15,3 @@ models:
           - accepted_values:
               arguments:
                 values: [1, 2, 3, 4, 5]
-              config:
-                where: "review_score is not null"
