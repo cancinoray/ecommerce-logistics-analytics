@@ -79,6 +79,8 @@ def api(method, path, token=None, data=None, timeout=60):
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             payload = resp.read()
+            if not payload:
+                return None
             if resp.headers.get_content_type() == "application/json":
                 return json.loads(payload)
             return payload
