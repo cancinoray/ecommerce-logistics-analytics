@@ -28,7 +28,8 @@ joined as (
 select
     seller_id,
     countDistinct(seller_order_id) as order_volume,
-    countIf(severity = 'On Time') / nullIf(countIf(severity != 'Delivery data unavailable'), 0) as on_time_rate,
+    countIf(severity = 'On Time')
+        / nullIf(countIf(severity not in ('Delivery data unavailable', 'Canceled or unavailable')), 0) as on_time_rate,
     avg(review_score) as avg_review_score
 from joined
 group by seller_id

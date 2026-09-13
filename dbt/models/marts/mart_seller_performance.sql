@@ -3,8 +3,9 @@
 -- time_period = month start: dateTrunc('month', order_purchase_timestamp) from int_order_delivery_metrics.
 -- Month is the coarsest grain supporting plan.md MoM/YoY; day/week can be added later.
 -- An order with items from multiple sellers counts once per seller (full order outcome
--- attributed to each seller). on_time_rate excludes 'Delivery data unavailable' from
--- num and denom. avg_review_score over non-null review_score only. order_volume =
+-- attributed to each seller). on_time_rate excludes 'Delivery data unavailable' and
+-- 'Canceled or unavailable' from num and denom. avg_review_score over non-null
+-- review_score only. order_volume =
 -- distinct orders the seller had >=1 item in, within the period.
 
 with order_sellers as (
@@ -41,7 +42,7 @@ agg as (
         time_period,
         countDistinct(order_id) as order_volume,
         countIf(order_id, severity = 'On Time')
-            / nullIf(countIf(order_id, severity != 'Delivery data unavailable'), 0) as on_time_rate,
+            / nullIf(countIf(order_id, severity not in ('Delivery data unavailable', 'Canceled or unavailable')), 0) as on_time_rate,
         avg(review_score) as avg_review_score
     from base
     group by seller_id, time_period

@@ -33,7 +33,7 @@ delivery as (
             end
         ) as delivery_score
     from orders
-    where delivery_severity != 'Delivery data unavailable'
+    where delivery_severity not in ('Delivery data unavailable', 'Canceled or unavailable')
         and delivery_severity is not null
     group by order_month
 ),
@@ -97,7 +97,7 @@ seller as (
         ) as seller_score
     from order_sellers as s
     inner join orders as o on s.order_id = o.order_id
-    where o.delivery_severity != 'Delivery data unavailable'
+    where o.delivery_severity not in ('Delivery data unavailable', 'Canceled or unavailable')
         and o.delivery_severity is not null
     group by o.order_month
 ),

@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: mart_seller_performance
-    description: "Seller performance rollup at one row per (seller_id, time_period), time_period = month start from order_purchase_timestamp. on_time_rate excludes 'Delivery data unavailable' from num and denom; avg_review_score over non-null only; order_volume = distinct orders. Full-refresh. Independently computes these per-seller-per-month metrics from the same upstream sources (stg_order_items, int_order_delivery_metrics, int_customer_experience_metrics) rather than building on top of int_seller_performance_metrics. This is by design, not duplication: int_seller_performance_metrics is an all-time, no-time_period snapshot, so it cannot supply the monthly grain this mart requires. See issue #18 for the original decision and issue #39 for the grooming confirmation."
+    description: "Seller performance rollup at one row per (seller_id, time_period), time_period = month start from order_purchase_timestamp. on_time_rate excludes 'Delivery data unavailable' and 'Canceled or unavailable' from num and denom; avg_review_score over non-null only; order_volume = distinct orders. Full-refresh. Independently computes these per-seller-per-month metrics from the same upstream sources (stg_order_items, int_order_delivery_metrics, int_customer_experience_metrics) rather than building on top of int_seller_performance_metrics. This is by design, not duplication: int_seller_performance_metrics is an all-time, no-time_period snapshot, so it cannot supply the monthly grain this mart requires. See issue #18 for the original decision and issue #39 for the grooming confirmation."
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
@@ -25,7 +25,7 @@ models:
       - name: order_volume
         description: "Distinct orders the seller had at least one item in, within the period."
       - name: on_time_rate
-        description: "Orders with severity 'On Time' / orders with severity != 'Delivery data unavailable', per seller-period."
+        description: "Orders with severity 'On Time' / orders with severity not in ('Delivery data unavailable', 'Canceled or unavailable'), per seller-period."
         tests:
           - dbt_utils.accepted_range:
               arguments:
