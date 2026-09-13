@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_date
-    description: "Calendar dimension at one row per date. Synthetic spine from 2016-06-04 to 2019-02-12 (actual Olist bounds 2016-09-04 to 2018-11-12 plus 3-month buffer each side). Supports MoM/YoY joins for fct_orders and fct_order_items. Full-refresh, not incremental."
+    description: "Calendar dimension at one row per date. Synthetic spine from 2016-06-04 to 2019-02-12 (actual Olist bounds 2016-09-04 to 2018-11-12 plus 3-month buffer each side). Standalone calendar reference table, not currently referenced by any other model — MoM/YoY trend reporting is handled via fct_orders.order_purchase_timestamp plus native BI date-bucketing (per #25/#31), no join to dim_date required. Kept as a future extension point (e.g. holiday/fiscal-calendar logic). Full-refresh, not incremental."
     columns:
       - name: date_day
         description: "Primary key. One row per calendar date (type Date). Covers all order timestamps with 3-month buffer."
