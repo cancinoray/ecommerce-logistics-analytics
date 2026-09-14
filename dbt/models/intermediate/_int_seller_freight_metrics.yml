@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: int_seller_freight_metrics
+    description: "One row per (seller_id, time_period), time_period = dateTrunc('month', order_purchase_timestamp). Per-seller-per-month order_volume (distinct orders the seller had at least one item in; the full order is attributed to every seller — the same multi-seller approximation as #18/#28), total_price and total_freight_value (summed over the seller's own line items, so they partition cleanly by seller_id with no double count), and freight_ratio = total_freight_value / total_price (NULL when total_price = 0). Full-refresh. Reads stg_order_items and int_order_delivery_metrics."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - seller_id
+              - time_period
+    columns:
+      - name: seller_id
+        description: "Part of composite grain. Foreign key to dim_seller."
+        tests:
+          - not_null
+      - name: time_period
+        description: "Part of composite grain. Month start, dateTrunc('month', order_purchase_timestamp)."
+        tests:
+          - not_null
+      - name: order_volume
+        description: "Distinct orders the seller had at least one item in, within the period."
+      - name: total_price
+        description: "Sum of price over the seller's line items in the period."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+      - name: total_freight_value
+        description: "Sum of freight_value over the seller's line items in the period."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+      - name: freight_ratio
+        description: "total_freight_value / total_price. NULL when total_price = 0."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true

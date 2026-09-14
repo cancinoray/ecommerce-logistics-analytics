@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: mart_seller_freight
+    description: "One row per (seller_id, time_period), time_period = dateTrunc('month', order_purchase_timestamp). Thin passthrough of int_seller_freight_metrics, adding seller-origin geography (seller_city, seller_state) from dim_seller. Sits beside mart_seller_performance and joins it 1:1 on (seller_id, time_period). Full-refresh."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - seller_id
+              - time_period
+    columns:
+      - name: seller_id
+        description: "Part of composite grain. Foreign key to dim_seller."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_seller')
+                field: seller_id
+      - name: time_period
+        description: "Part of composite grain. Month start, dateTrunc('month', order_purchase_timestamp)."
+        tests:
+          - not_null
+      - name: order_volume
+        description: "Distinct orders the seller had at least one item in, within the period."
+      - name: total_price
+        description: "Sum of price over the seller's line items in the period."
+      - name: total_freight_value
+        description: "Sum of freight_value over the seller's line items in the period."
+      - name: freight_ratio
+        description: "total_freight_value / total_price. NULL when total_price = 0."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
+      - name: seller_city
+        description: "Seller city (seller origin), from dim_seller."
+      - name: seller_state
+        description: "Seller state (seller origin), from dim_seller."
