@@ -39,7 +39,7 @@
       "updated_at": "2026-09-13T13:31:40.474768Z",
       "visualization_settings": {
         "text_card_key": "association-only",
-        "text": "## Root Cause & Drill-Down\n\n**Association only \u2014 not a causal claim.** The charts below describe how review scores and freight costs are distributed across delivery-severity buckets. This is descriptive, pattern-level reporting only \u2014 no claim is made about what determines review scores or freight cost. Use the drill-down tables below to move from a pattern to the underlying seller, location, or order rows.",
+        "text": "## Root Cause & Drill-Down\n\n**Association only — not a causal claim.** The charts below describe how review scores and freight costs are distributed across delivery-severity buckets. This is descriptive, pattern-level reporting only — no claim is made about what determines review scores or freight cost. Use the drill-down tables below to move from a pattern to the underlying seller, location, or order rows.",
         "virtual_card": {
           "archived": false,
           "dataset_query": {},
@@ -69,7 +69,7 @@
           },
           "type": "native"
         },
-        "description": "Association only \u2014 not a causal claim. Cross-tab of order counts by review_score and delivery_severity, straight GROUP BY from fct_orders. This is a descriptive association only, with no claim about what determines review scores.",
+        "description": "Association only — not a causal claim. Cross-tab of order counts by review_score and delivery_severity, straight GROUP BY from fct_orders. This is a descriptive association only, with no claim about what determines review scores.",
         "display": "table",
         "embedding_params": null,
         "enable_embedding": false,
@@ -191,7 +191,19 @@
       "dashboard_tab_id": null,
       "entity_id": "7GIKbXW8aQl_kdxMWt3bO",
       "id": 44,
-      "parameter_mappings": [],
+      "parameter_mappings": [
+        {
+          "card_id": 39,
+          "parameter_id": "3f7a9c21",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "month"
+            ]
+          ]
+        }
+      ],
       "row": 3,
       "series": [],
       "size_x": 12,
@@ -219,7 +231,7 @@
           },
           "type": "native"
         },
-        "description": "Association only \u2014 not a causal claim. Average freight_ratio, total_freight_value, and delay_days grouped by delivery_severity, order-level, straight GROUP BY from fct_orders. Descriptive association only.",
+        "description": "Association only — not a causal claim. Average freight_ratio, total_freight_value, and delay_days grouped by delivery_severity, order-level, straight GROUP BY from fct_orders. Descriptive association only.",
         "display": "bar",
         "embedding_params": null,
         "enable_embedding": false,
@@ -408,7 +420,19 @@
       "dashboard_tab_id": null,
       "entity_id": "eXDKFLSsri844-5Ob8lfq",
       "id": 45,
-      "parameter_mappings": [],
+      "parameter_mappings": [
+        {
+          "card_id": 40,
+          "parameter_id": "3f7a9c21",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "month"
+            ]
+          ]
+        }
+      ],
       "row": 3,
       "series": [],
       "size_x": 12,
@@ -2061,7 +2085,7 @@
       "visualization_settings": {}
     }
   ],
-  "description": "Dashboard 3 \u2014 answers why are we seeing these problems. Cross-tabs review score against delivery severity and freight cost against delivery performance, plus row-level drill-downs by seller, location, and order. Built entirely on fct_orders and fct_order_items.",
+  "description": "Root Cause & Drill-Down - \"Why are we seeing these problems?\" Cross-tabs review score (Insight 4) and freight cost (Insight 2) against delivery severity (Insight 1), plus row-level drill-downs by seller, location, and order. Association only - not a causal claim. Built entirely on fct_orders and fct_order_items.",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "MLE2JuckOJ55ELdmY86po",
@@ -2084,6 +2108,13 @@
   "param_fields": null,
   "param_values": null,
   "parameters": [
+    {
+      "id": "3f7a9c21",
+      "name": "Month",
+      "sectionId": "date",
+      "slug": "month",
+      "type": "date/month-year"
+    },
     {
       "id": "b80bc153",
       "name": "Seller ID",

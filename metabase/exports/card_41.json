@@ -47,7 +47,7 @@
     },
     "type": "native"
   },
-  "description": "Row-level, one row per order item, filtered to a single seller_id. Sourced from fct_order_items joined to fct_orders.",
+  "description": "Drill-down for Insight 1 (delivery performance), Insight 2 (logistics cost), Insight 3 (seller performance), and Insight 4 (customer experience): row-level order items for a single seller_id. Reads fct_order_items joined to fct_orders (the #33-permitted drill-down join).",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

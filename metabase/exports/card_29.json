@@ -58,7 +58,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 1 - delivery performance: order counts and average delay_days for each of the six delivery-severity buckets (On Time, 1-3 days late, 4-7 days late, 8+ days late, Delivery data unavailable, Canceled or unavailable). Reads fct_orders.",
   "display": "bar",
   "embedding_params": null,
   "enable_embedding": false,

@@ -54,7 +54,7 @@
     },
     "type": "native"
   },
-  "description": "Row-level, one row per order, filterable by customer city and/or state, sourced directly from fct_orders raw customer_city/customer_state columns (no dim_location join).",
+  "description": "Drill-down for Insight 1 (delivery performance) and Insight 2 (logistics cost): row-level orders filterable by customer_city and/or customer_state. Reads fct_orders.",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

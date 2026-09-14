@@ -1,0 +1,46 @@
+{
+  "archived": false,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "native": {
+      "query": "SELECT seller_id, seller_state, seller_city, time_period, order_volume, total_freight_value, freight_ratio FROM mart_seller_freight WHERE 1=1 [[AND {{month}}]] [[AND {{seller_id}}]] ORDER BY freight_ratio DESC",
+      "template-tags": {
+        "month": {
+          "default": null,
+          "dimension": [
+            "field",
+            227,
+            {
+              "base-type": "type/Date"
+            }
+          ],
+          "display-name": "Month",
+          "id": "b5b6c7d8-1111-2222-3333-444455556666",
+          "name": "month",
+          "type": "dimension",
+          "widget-type": "date/month-year"
+        },
+        "seller_id": {
+          "default": null,
+          "dimension": [
+            "field",
+            226,
+            null
+          ],
+          "display-name": "Seller ID",
+          "id": "a1b2c3d4-0021-0022-0023-002400250026",
+          "name": "seller_id",
+          "type": "dimension",
+          "widget-type": "string/="
+        }
+      }
+    },
+    "type": "native"
+  },
+  "description": "Insight 2 - logistics cost by seller: per seller-month freight_ratio with order_volume and freight-value totals; filterable by month and seller_id. Reads mart_seller_freight.",
+  "display": "table",
+  "id": 44,
+  "name": "Freight Ratio by Seller",
+  "visualization_settings": {}
+}

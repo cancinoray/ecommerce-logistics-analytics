@@ -37,14 +37,6 @@
       "aggregation": [
         [
           "count"
-        ],
-        [
-          "avg",
-          [
-            "field",
-            203,
-            null
-          ]
         ]
       ],
       "breakout": [
@@ -58,7 +50,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 4 - customer experience (association only, not a causal claim): how orders distribute across review_score values. Reads fct_orders.",
   "display": "bar",
   "embedding_params": null,
   "enable_embedding": false,

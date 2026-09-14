@@ -1,0 +1,53 @@
+{
+  "archived": false,
+  "database_id": 2,
+  "dataset_query": {
+    "database": 2,
+    "native": {
+      "query": "SELECT customer_state, avg(freight_ratio) AS avg_freight_ratio, sum(total_freight_value) AS total_freight_value, count() AS order_count FROM fct_orders WHERE 1=1 [[AND {{month}}]] [[AND {{customer_state}}]] GROUP BY customer_state ORDER BY avg_freight_ratio DESC",
+      "template-tags": {
+        "month": {
+          "default": null,
+          "dimension": [
+            "field",
+            199,
+            {
+              "base-type": "type/DateTime"
+            }
+          ],
+          "display-name": "Month",
+          "id": "6ec94ae5-716b-4106-8524-b9c239576ce7",
+          "name": "month",
+          "type": "dimension",
+          "widget-type": "date/month-year"
+        },
+        "customer_state": {
+          "default": null,
+          "dimension": [
+            "field",
+            279,
+            null
+          ],
+          "display-name": "Customer State",
+          "id": "a1b2c3d4-0031-0032-0033-003400350036",
+          "name": "customer_state",
+          "type": "dimension",
+          "widget-type": "string/="
+        }
+      }
+    },
+    "type": "native"
+  },
+  "description": "Insight 2 - logistics cost by geography: average freight_ratio, total freight value, and order count per customer_state; filterable by month and customer_state. Reads fct_orders.",
+  "display": "bar",
+  "id": 45,
+  "name": "Freight Ratio by Customer State",
+  "visualization_settings": {
+    "graph.dimensions": [
+      "customer_state"
+    ],
+    "graph.metrics": [
+      "avg_freight_ratio"
+    ]
+  }
+}

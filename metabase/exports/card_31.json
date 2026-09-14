@@ -50,14 +50,17 @@
             194,
             null
           ]
+        ],
+        [
+          "count"
         ]
       ],
       "source-table": 29
     },
     "type": "query"
   },
-  "description": null,
-  "display": "scalar",
+  "description": "Insight 2 - logistics cost: average freight_ratio, total freight value, and order count across all orders. Reads fct_orders.",
+  "display": "table",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "cb5aTZdZYrFdiw3yakGfR",

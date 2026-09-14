@@ -86,7 +86,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 3 - seller performance: per seller-month on_time_rate with order_volume and avg_review_score. Reads mart_seller_performance.",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

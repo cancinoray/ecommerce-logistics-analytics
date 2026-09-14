@@ -34,7 +34,7 @@
   "dataset_query": {
     "database": 2,
     "native": {
-      "query": "SELECT seller_id, seller_state, seller_city, on_time_rate, order_volume, avg_review_score, time_period FROM mart_seller_performance [[WHERE {{month}}]] ORDER BY on_time_rate ASC LIMIT 50",
+      "query": "SELECT seller_id, seller_state, seller_city, on_time_rate, order_volume, avg_review_score, time_period FROM mart_seller_performance WHERE order_volume >= 5 [[AND {{month}}]] [[AND {{seller_id}}]] ORDER BY on_time_rate ASC LIMIT 50",
       "template-tags": {
         "month": {
           "default": null,
@@ -50,12 +50,25 @@
           "name": "month",
           "type": "dimension",
           "widget-type": "date/month-year"
+        },
+        "seller_id": {
+          "default": null,
+          "dimension": [
+            "field",
+            220,
+            null
+          ],
+          "display-name": "Seller ID",
+          "id": "a1b2c3d4-0001-0002-0003-000400050006",
+          "name": "seller_id",
+          "type": "dimension",
+          "widget-type": "string/="
         }
       }
     },
     "type": "native"
   },
-  "description": null,
+  "description": "Insight 3 - seller performance: lowest on_time_rate seller-months first. Filtered to order_volume >= 5 because a seller-month with only a handful of orders produces a noisy 0-100% on-time rate that would otherwise top the worst-first ranking (#28). Reads mart_seller_performance.",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

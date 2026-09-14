@@ -34,11 +34,28 @@
   "dataset_query": {
     "database": 2,
     "native": {
-      "query": "SELECT delivery_severity, avg(freight_ratio) AS avg_freight_ratio, avg(total_freight_value) AS avg_freight_value, avg(delay_days) AS avg_delay_days, count(*) AS order_count FROM fct_orders GROUP BY delivery_severity ORDER BY delivery_severity"
+      "query": "SELECT delivery_severity, avg(freight_ratio) AS avg_freight_ratio, avg(total_freight_value) AS avg_freight_value, avg(delay_days) AS avg_delay_days, count(*) AS order_count FROM fct_orders [[WHERE {{month}}]] GROUP BY delivery_severity ORDER BY delivery_severity",
+      "template-tags": {
+        "month": {
+          "default": null,
+          "dimension": [
+            "field",
+            199,
+            {
+              "base-type": "type/DateTime"
+            }
+          ],
+          "display-name": "Month",
+          "id": "6ec94ae5-716b-4106-8524-b9c239576ce7",
+          "name": "month",
+          "type": "dimension",
+          "widget-type": "date/month-year"
+        }
+      }
     },
     "type": "native"
   },
-  "description": "Association only \u2014 not a causal claim. Average freight_ratio, total_freight_value, and delay_days grouped by delivery_severity, order-level, straight GROUP BY from fct_orders. Descriptive association only.",
+  "description": "Insight 2 - logistics cost versus delivery performance (association only, not a causal claim): average freight_ratio, freight value, and delay_days by the six delivery-severity buckets; filterable by month. Reads fct_orders.",
   "display": "bar",
   "embedding_params": null,
   "enable_embedding": false,

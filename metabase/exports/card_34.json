@@ -60,7 +60,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 1 and Insight 4 - delivery performance and customer experience over time: monthly order volume and average review_score trend. Reads fct_orders.",
   "display": "line",
   "embedding_params": null,
   "enable_embedding": false,
@@ -79,7 +79,7 @@
   "made_public_by_id": null,
   "metabase_version": "v0.50.24 (3b63317)",
   "moderation_reviews": [],
-  "name": "Trends \u2014 Order Volume & Review Score (MoM/YoY)",
+  "name": "Trends — Order Volume & Review Score (MoM/YoY)",
   "parameter_mappings": [],
   "parameter_usage_count": 0,
   "parameters": [],

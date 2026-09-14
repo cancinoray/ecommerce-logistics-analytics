@@ -54,6 +54,11 @@
           "field",
           211,
           null
+        ],
+        [
+          "field",
+          241,
+          null
         ]
       ],
       "order-by": [
@@ -70,7 +75,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 5 - data quality: monthly pct_orders_unavailable_delivery_data, pct_orders_missing_review, pct_orders_impossible_date_ordering, and pct_orders_canceled_or_unavailable, kept separate from the score. Reads mart_data_quality.",
   "display": "line",
   "embedding_params": null,
   "enable_embedding": false,
@@ -243,7 +248,8 @@
     "graph.metrics": [
       "pct_orders_unavailable_delivery_data",
       "pct_orders_missing_review",
-      "pct_orders_impossible_date_ordering"
+      "pct_orders_impossible_date_ordering",
+      "pct_orders_canceled_or_unavailable"
     ]
   }
 }

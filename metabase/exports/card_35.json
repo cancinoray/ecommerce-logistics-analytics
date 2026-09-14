@@ -55,7 +55,7 @@
     },
     "type": "native"
   },
-  "description": null,
+  "description": "Insight 1 - delivery performance over time: order counts by month for each of the six delivery-severity buckets. Reads fct_orders.",
   "display": "bar",
   "embedding_params": null,
   "enable_embedding": false,

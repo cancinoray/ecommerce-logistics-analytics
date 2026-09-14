@@ -27,7 +27,8 @@
       "209": "pct_orders_unavailable_delivery_data",
       "210": "pct_orders_missing_review",
       "211": "pct_orders_impossible_date_ordering",
-      "212": "order_month"
+      "212": "order_month",
+      "241": "pct_orders_canceled_or_unavailable"
     },
     "name": "mart_data_quality",
     "schema": "marts"
@@ -39,7 +40,9 @@
       "215": "order_month",
       "216": "delivery_score",
       "217": "logistics_cost_score",
-      "218": "final_score"
+      "218": "final_score",
+      "242": "order_count",
+      "243": "delivery_coverage"
     },
     "name": "mart_logistics_performance_score",
     "schema": "marts"
@@ -55,6 +58,33 @@
       "225": "order_volume"
     },
     "name": "mart_seller_performance",
+    "schema": "marts"
+  },
+  "33": {
+    "fields": {
+      "226": "seller_id",
+      "227": "time_period",
+      "228": "order_volume",
+      "229": "total_price",
+      "230": "total_freight_value",
+      "231": "freight_ratio",
+      "232": "seller_city",
+      "233": "seller_state"
+    },
+    "name": "mart_seller_freight",
+    "schema": "marts"
+  },
+  "34": {
+    "fields": {
+      "234": "order_id",
+      "235": "order_item_id",
+      "236": "product_id",
+      "237": "seller_id",
+      "238": "shipping_limit_date",
+      "239": "price",
+      "240": "freight_value"
+    },
+    "name": "fct_order_items",
     "schema": "marts"
   }
 }

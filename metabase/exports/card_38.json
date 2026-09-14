@@ -34,7 +34,7 @@
   "dataset_query": {
     "database": 2,
     "native": {
-      "query": "SELECT customer_state, customer_city, delivery_severity, count() AS order_count FROM fct_orders [[WHERE {{month}}]] GROUP BY customer_state, customer_city, delivery_severity ORDER BY customer_state, customer_city",
+      "query": "SELECT customer_state, customer_city, delivery_severity, count() AS order_count FROM fct_orders WHERE 1=1 [[AND {{month}}]] [[AND {{customer_state}}]] GROUP BY customer_state, customer_city, delivery_severity ORDER BY customer_state, customer_city",
       "template-tags": {
         "month": {
           "default": null,
@@ -50,12 +50,25 @@
           "name": "month",
           "type": "dimension",
           "widget-type": "date/month-year"
+        },
+        "customer_state": {
+          "default": null,
+          "dimension": [
+            "field",
+            279,
+            null
+          ],
+          "display-name": "Customer State",
+          "id": "a1b2c3d4-0011-0012-0013-001400150016",
+          "name": "customer_state",
+          "type": "dimension",
+          "widget-type": "string/="
         }
       }
     },
     "type": "native"
   },
-  "description": null,
+  "description": "Insight 1 - delivery performance by geography: order counts by customer_state, customer_city, and the six delivery-severity buckets; filterable by customer_state and month. Reads fct_orders.",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

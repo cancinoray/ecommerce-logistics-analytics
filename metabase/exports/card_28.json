@@ -64,6 +64,16 @@
           "field",
           214,
           null
+        ],
+        [
+          "field",
+          242,
+          null
+        ],
+        [
+          "field",
+          243,
+          null
         ]
       ],
       "order-by": [
@@ -80,7 +90,7 @@
     },
     "type": "query"
   },
-  "description": null,
+  "description": "Insight 1 (composite delivery performance): the monthly final score with its delivery, customer-experience, logistics-cost, and seller components, plus delivery_coverage and order_count so a month whose delivery component was re-weighted is not misread as an operational collapse. Reads mart_logistics_performance_score.",
   "display": "line",
   "embedding_params": null,
   "enable_embedding": false,
@@ -306,6 +316,40 @@
       "id": 214,
       "name": "seller_score",
       "semantic_type": "type/Score",
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Integer",
+      "coercion_strategy": null,
+      "display_name": "Order Count",
+      "effective_type": "type/Integer",
+      "field_ref": [
+        "field",
+        242,
+        null
+      ],
+      "fk_target_field_id": null,
+      "id": 242,
+      "name": "order_count",
+      "semantic_type": null,
+      "settings": null,
+      "visibility_type": "normal"
+    },
+    {
+      "base_type": "type/Float",
+      "coercion_strategy": null,
+      "display_name": "Delivery Coverage",
+      "effective_type": "type/Float",
+      "field_ref": [
+        "field",
+        243,
+        null
+      ],
+      "fk_target_field_id": null,
+      "id": 243,
+      "name": "delivery_coverage",
+      "semantic_type": null,
       "settings": null,
       "visibility_type": "normal"
     }

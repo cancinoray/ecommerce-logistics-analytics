@@ -124,7 +124,7 @@
           "entity": {
             "collection_id": null,
             "db_id": null,
-            "description": "Dashboard 3 \u2014 answers why are we seeing these problems. Cross-tabs review score against delivery severity and freight cost against delivery performance, plus row-level drill-downs by seller, location, and order. Built entirely on fct_orders and fct_order_items.",
+            "description": "Dashboard 3 — answers why are we seeing these problems. Cross-tabs review score against delivery severity and freight cost against delivery performance, plus row-level drill-downs by seller, location, and order. Built entirely on fct_orders and fct_order_items.",
             "display": null,
             "id": 5,
             "model": "dashboard",
@@ -142,7 +142,7 @@
       }
     }
   ],
-  "description": "Landing page linking to the analytics dashboards.",
+  "description": "Home - landing page linking to the three analysis dashboards that cover Insight 1 (delivery performance), Insight 2 (logistics cost), Insight 3 (seller performance), Insight 4 (customer experience), and Insight 5 (data quality).",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "esA83NaLMj2qnH_I2wyUK",

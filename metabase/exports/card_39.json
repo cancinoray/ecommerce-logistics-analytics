@@ -34,11 +34,28 @@
   "dataset_query": {
     "database": 2,
     "native": {
-      "query": "SELECT review_score, delivery_severity, count(*) AS order_count FROM fct_orders GROUP BY review_score, delivery_severity ORDER BY review_score, delivery_severity"
+      "query": "SELECT review_score, delivery_severity, count(*) AS order_count FROM fct_orders [[WHERE {{month}}]] GROUP BY review_score, delivery_severity ORDER BY review_score, delivery_severity",
+      "template-tags": {
+        "month": {
+          "default": null,
+          "dimension": [
+            "field",
+            199,
+            {
+              "base-type": "type/DateTime"
+            }
+          ],
+          "display-name": "Month",
+          "id": "6ec94ae5-716b-4106-8524-b9c239576ce7",
+          "name": "month",
+          "type": "dimension",
+          "widget-type": "date/month-year"
+        }
+      }
     },
     "type": "native"
   },
-  "description": "Association only \u2014 not a causal claim. Cross-tab of order counts by review_score and delivery_severity, straight GROUP BY from fct_orders. This is a descriptive association only, with no claim about what determines review scores.",
+  "description": "Insight 4 - customer experience (association only, not a causal claim): order counts cross-tabbed by review_score and the six delivery-severity buckets; filterable by month. Reads fct_orders.",
   "display": "table",
   "embedding_params": null,
   "enable_embedding": false,

@@ -701,6 +701,17 @@
               "month"
             ]
           ]
+        },
+        {
+          "card_id": 36,
+          "parameter_id": "8d4b2e10",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "seller_id"
+            ]
+          ]
         }
       ],
       "row": 16,
@@ -908,6 +919,17 @@
               "month"
             ]
           ]
+        },
+        {
+          "card_id": 38,
+          "parameter_id": "57c1f0a2",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "customer_state"
+            ]
+          ]
         }
       ],
       "row": 25,
@@ -916,9 +938,79 @@
       "size_y": 10,
       "updated_at": "2026-09-13T14:11:46.116132Z",
       "visualization_settings": {}
+    },
+    {
+      "card_id": 44,
+      "card": {
+        "name": "Freight Ratio by Seller"
+      },
+      "row": 35,
+      "col": 0,
+      "size_x": 24,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "card_id": 44,
+          "parameter_id": "ae04b524-86d0-481b-a25e-13be4e9340c9",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "month"
+            ]
+          ]
+        },
+        {
+          "card_id": 44,
+          "parameter_id": "8d4b2e10",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "seller_id"
+            ]
+          ]
+        }
+      ],
+      "visualization_settings": {}
+    },
+    {
+      "card_id": 45,
+      "card": {
+        "name": "Freight Ratio by Customer State"
+      },
+      "row": 43,
+      "col": 0,
+      "size_x": 24,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "card_id": 45,
+          "parameter_id": "ae04b524-86d0-481b-a25e-13be4e9340c9",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "month"
+            ]
+          ]
+        },
+        {
+          "card_id": 45,
+          "parameter_id": "57c1f0a2",
+          "target": [
+            "dimension",
+            [
+              "template-tag",
+              "customer_state"
+            ]
+          ]
+        }
+      ],
+      "visualization_settings": {}
     }
   ],
-  "description": "Where are the problems? Late-delivery severity by month, on-time rate by seller, and logistics cost by month. Sourced only from fct_orders and mart_seller_performance; no business logic recomputed.",
+  "description": "Problem Analysis - \"Where are the problems?\" Late-delivery severity by month and geography, on-time rate by seller, and logistics cost by month, seller, and customer state. Labeled by insight: Insight 1 (delivery performance), Insight 2 (logistics cost), Insight 3 (seller performance). Sourced only from fct_orders, mart_seller_performance, and mart_seller_freight; no business logic recomputed.",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "p3ClTbNZDPWC9foRO81j8",
@@ -970,6 +1062,20 @@
       "sectionId": "date",
       "slug": "month",
       "type": "date/month-year"
+    },
+    {
+      "id": "57c1f0a2",
+      "name": "Customer State",
+      "sectionId": "string",
+      "slug": "customer_state",
+      "type": "string/="
+    },
+    {
+      "id": "8d4b2e10",
+      "name": "Seller ID",
+      "sectionId": "string",
+      "slug": "seller_id",
+      "type": "string/="
     }
   ],
   "points_of_interest": null,

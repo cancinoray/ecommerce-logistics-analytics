@@ -55,7 +55,7 @@
     },
     "type": "native"
   },
-  "description": null,
+  "description": "Insight 2 - logistics cost over time: monthly average freight_ratio and freight-value totals. Reads fct_orders.",
   "display": "line",
   "embedding_params": null,
   "enable_embedding": false,

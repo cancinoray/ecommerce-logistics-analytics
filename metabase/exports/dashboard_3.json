@@ -1535,7 +1535,7 @@
         "made_public_by_id": null,
         "metabase_version": "v0.50.24 (3b63317)",
         "moderation_reviews": [],
-        "name": "Trends \u2014 Order Volume & Review Score (MoM/YoY)",
+        "name": "Trends — Order Volume & Review Score (MoM/YoY)",
         "parameter_mappings": [],
         "parameters": [],
         "public_uuid": null,
@@ -1675,7 +1675,7 @@
       "visualization_settings": {}
     }
   ],
-  "description": "How are we performing? The logistics performance score with its delivery, customer experience, logistics cost, and seller components, plus delivery KPIs, customer experience, seller performance, data quality, and MoM/YoY volume and review trends. Sourced from the mart models; no business logic recomputed.",
+  "description": "Executive Overview - \"How are we performing?\" The logistics performance score and its components, delivery KPIs, customer experience, logistics cost, seller performance, data quality, and volume/review trends. Labeled by insight: Insight 1 (delivery performance), Insight 2 (logistics cost), Insight 3 (seller performance), Insight 4 (customer experience), Insight 5 (data quality). Sourced from the mart models; no business logic recomputed.",
   "embedding_params": null,
   "enable_embedding": false,
   "entity_id": "vEocuHBpt9Q_y_67SA3oC",
