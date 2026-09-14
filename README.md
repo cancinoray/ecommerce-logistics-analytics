@@ -332,6 +332,10 @@ Then open `http://localhost:8080/#!/overview` and click any model to see its int
 
 ## 🛠️ Technologies Used
 
+![Stack architecture: Docker running the ingestion step into ClickHouse, dbt, and Metabase](image/stack-diagram.png)
+
+The diagram shows the shape of the pipeline; the ingestion box is drawn generically as "Python Script" but in this repo that step is `scripts/load_raw.sh`, a bash script (see the Pipeline Overview section above for the actual implementation).
+
 | | Tool | Role |
 | --- | --- | --- |
 | <img src="https://cdn.simpleicons.org/clickhouse/FFCC01" width="24" height="24" alt="ClickHouse"/> | **ClickHouse** | Analytical (OLAP) warehouse for raw, staging, intermediate, and mart data |
