@@ -24,3 +24,4 @@ __pycache__/
 
 # Source data (Kaggle Olist CSVs, downloaded manually - see scripts/load_raw.sh)
 data/
+.zed

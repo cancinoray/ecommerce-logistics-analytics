@@ -64,6 +64,9 @@ services:
     build:
       context: ./dbt
     command: ["tail", "-f", "/dev/null"]
+    ports:
+      # dbt docs serve (run manually; see README's "Full Model Lineage" section)
+      - "8080:8080"
     volumes:
       # Bind-mount project files so model/test edits are visible in the
       # container without rebuilding the image. Individual paths (not
