@@ -74,8 +74,8 @@ RAW_DB_NAME = "ClickHouse (raw)"
 # read an edited card as a brand-new one (see the persistence caveat above).
 TEXT_CARD_KEY = "text_card_key"
 
-# Old dashboard IDs (live, 2026-09-13) in export-file order -> dashboard name,
-# used to remap dashboard 6's link-card URLs to the recreated IDs.
+# Export filename -> dashboard name, in replay order (Home last, so its link
+# cards can resolve the other three dashboards' recreated IDs).
 EXPORT_DASHBOARDS = [
     ("dashboard_3.json", "Executive Overview"),
     ("dashboard_4.json", "Problem Analysis"),
@@ -294,7 +294,13 @@ def remap_query(node, db_map, table_map, field_map):
         out = {}
         for key, value in node.items():
             if key == "database" and isinstance(value, int):
-                out[key] = db_map.get(value, value)
+                if value not in db_map:
+                    raise APIError(
+                        f"database id {value} in export has no id mapping "
+                        f"(known old ids: {sorted(db_map)}) -- add it to "
+                        "db_map in main() rather than letting it pass "
+                        "through unmapped")
+                out[key] = db_map[value]
             elif key == "source-table" and isinstance(value, int):
                 out[key] = table_map.get(value, value)
             else:
@@ -421,7 +427,7 @@ def find_existing_dashcard(by_identity, export_identity):
     return None
 
 
-def remap_dashcard_viz(viz, dashboard_ids_by_name, old_dashboards_by_id,
+def remap_dashcard_viz(viz, dashboard_ids_by_name,
                       dashboard_descriptions_by_name):
     viz = json.loads(json.dumps(viz))  # deep copy
     target = link_target_name(viz)
@@ -475,8 +481,7 @@ def normalize_params(params):
 
 
 def ensure_dashboard(token, export, card_ids_by_name, dashboard_ids_by_name,
-                     old_dashboards_by_id, dashboard_descriptions_by_name,
-                     field_map):
+                     dashboard_descriptions_by_name, field_map):
     name = export["name"]
     existing = None
     for dash in api("GET", "/api/dashboard", token=token):
@@ -529,7 +534,6 @@ def ensure_dashboard(token, export, card_ids_by_name, dashboard_ids_by_name,
             entry_viz = viz
         else:
             entry_viz = remap_dashcard_viz(viz, dashboard_ids_by_name,
-                                           old_dashboards_by_id,
                                            dashboard_descriptions_by_name)
             new_card_id = None
         entry_pm = remap_parameter_mappings(dc.get("parameter_mappings"),
@@ -584,7 +588,12 @@ def main():
     old_tables, dashboards, cards = load_exports()
 
     marts_id = ensure_database(token, MARTS_DB_NAME, "marts")
-    raw_id = ensure_database(token, RAW_DB_NAME, "raw")
+    # Created so the connection exists, but no export currently queries it: no
+    # card in exports/ has an old database id for `raw` to map from, so it is
+    # deliberately left out of db_map. If a raw-backed card is ever exported,
+    # remap_query() will raise loudly telling you to add its old id here --
+    # rather than silently leaving the card pointed at the old instance's id.
+    ensure_database(token, RAW_DB_NAME, "raw")
     db_map = {2: marts_id}
 
     required = {(t["schema"], t["name"]) for t in old_tables.values()}
@@ -600,14 +609,13 @@ def main():
         ensure_card(token, cards[card_name], db_map, table_map, field_map,
                     card_ids_by_name)
 
-    old_dashboards_by_id = {d["id"]: d["name"] for d in dashboards}
     dashboard_descriptions_by_name = {d["name"]: d.get("description")
                                       for d in dashboards}
     dashboard_ids_by_name = {}
     # Replay in export order so link targets on Home resolve: Home is last.
     for export in dashboards:
         ensure_dashboard(token, export, card_ids_by_name,
-                         dashboard_ids_by_name, old_dashboards_by_id,
+                         dashboard_ids_by_name,
                          dashboard_descriptions_by_name, field_map)
 
     home_id = dashboard_ids_by_name[HOME_DASHBOARD_NAME]
