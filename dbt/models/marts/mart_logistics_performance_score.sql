@@ -21,6 +21,18 @@ with orders as (
     where order_purchase_timestamp is not null
 ),
 
+order_diagnostics as (
+    -- sample size + delivery-data coverage per month, from fct_orders only
+    -- (never int_data_quality_flags/mart_data_quality, per plan.md s14)
+    select
+        order_month,
+        count(*) as order_count,
+        countIf(delivery_severity in ('On Time', '1-3 days late', '4-7 days late', '8+ days late'))
+            / count(*) as delivery_coverage
+    from orders
+    group by order_month
+),
+
 delivery as (
     select
         order_month,
@@ -130,8 +142,11 @@ select
         + (if(l.logistics_cost_score is null, 0.0, 0.2))
         + (if(s.seller_score is null, 0.0, 0.1)),
         0
-    ) as final_score
+    ) as final_score,
+    oc.order_count as order_count,
+    oc.delivery_coverage as delivery_coverage
 from months as m
+left join order_diagnostics as oc on m.order_month = oc.order_month
 left join delivery as d on m.order_month = d.order_month
 left join customer_experience as c on m.order_month = c.order_month
 left join logistics_cost as l on m.order_month = l.order_month
