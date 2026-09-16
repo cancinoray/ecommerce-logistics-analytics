@@ -9,9 +9,11 @@
 
 ## Objective
 
-This project builds an analytics-engineering pipeline for the **Olist Brazilian E-Commerce Public Dataset** (100k+ orders, 2016-2018), focused on logistics performance: delivery speed, freight cost, seller performance, customer experience, and data quality. It uses **ClickHouse, dbt, and Metabase**, all running locally via Docker.
+This project builds an analytics-engineering pipeline for the **Olist Brazilian E-Commerce Public Dataset** (99,441 orders, Sep 2016 – Oct 2018), focused on logistics performance: delivery speed, freight cost, seller performance, customer experience, and data quality. It uses **ClickHouse, dbt, and Metabase**, all running locally via Docker.
 
-You can check the source of data here: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+Source: [Kaggle — Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), licensed **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)** (attribution, non-commercial, share-alike). This is a **method demonstration on public data**, not client work.
+
+> All order, revenue and performance figures below are computed from the real dataset and are reproducible from the CSVs in `data/`.
 
 ### At a Glance
 
