@@ -1,7 +1,6 @@
 # Internal docs / agent instructions
 _docs/
 AGENTS.md
-.claude
 
 # dbt
 dbt/target/
